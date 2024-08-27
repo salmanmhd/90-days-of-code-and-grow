@@ -9,5 +9,23 @@
     <h1>Day 1</h1>
     <a target="_blank" href="https://google.com">Link to a new page</a>
     <!-- better way to write -->
+    <br />
+    <label for="numberSlider">Choose a number:</label>
+    <input
+      type="range"
+      id="numberSlider"
+      name="numberSlider"
+      min="0"
+      max="100"
+      value="50"
+      oninput="updateValue(this.value)"
+    />
+    <span id="sliderValue">50</span>
+
+    <script>
+      function updateValue(value) {
+        document.getElementById('sliderValue').textContent = value;
+      }
+    </script>
   </body>
 </html>

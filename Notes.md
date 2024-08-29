@@ -126,3 +126,93 @@ Semantic HTML uses meaningful tags that describe the purpose of content. Common 
 
 - `grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));` This will auto maintain the number of columns as per the width.
 - `grid-template-columns: repeat(auto-fill, 250px)`
+
+# Javascript
+
+## Primitive Types
+
+## Stack and heap memory
+
+- `Stack memory` - variable get copy of value
+- `Heap memory` - variable get reference as copy
+
+- Value Types and Reference Types
+
+  - Primitive are copied by their value
+  - Objects are copied by their reference
+  - So when we pass the primitive in functions their value will not be changed, as it will be copied by their value but for object it will be copied by reference.
+
+  ```Javascript
+  let a = 12;
+  function abc(number) {
+  number++;
+  }
+
+  abc(a);
+  console.log(a); // 12
+
+  const obj = [12, 3, 4];
+
+  function array(arr) {
+  arr.push(123);
+  }
+  array(obj);
+  console.log(obj); // [12, 3, 4, 123]
+
+  ```
+
+## `Execution Context` (Call Stack, Execution context stack, program stack, control stack, runtime stack, machine stack)
+
+Execution context is a concept that represents the environment in which Js code is executed
+
+1. Memory creation
+   - first it will assign the memory to all variable as undefined and for function it stores all the code as it is
+2. Code execution
+   - In the code execution it will actually run the code and if there is any function call then it will create another execution context for function which is called as `function execution context` which will again have the same thing as global execution context. FEC will be deleted after the function call
+
+### Memory Creation
+
+1. Javascript stores the variables as undefined and for function
+
+- `==` with this we just check the value, Js auto type conversion can change the output as well. Like 2 == "2" -> true
+- `Type coersion` can be done while checking two variables (==, >, <,)
+  - implicit coersion - auto coversion. It happens when we are `comparing two numbers` or when we are `adding two variable one is number and other is string`, then the resultant will be the sum of those two numbers in String, `truthy or falsy values converting to 1 or 0`
+  - explicit coersion - manual converison with the built in methods
+- `===` with this we check both the value and type
+- `Falsy Values` - false, 0, "", null, undefined, NaN, -0
+
+## Expression vs. Statement
+
+`Expression`: A piece of code that evaluates to a value (e.g., 2 + 2, "Hello", Math.max(10, 20)).
+`Statement`: A piece of code that performs an action (e.g., if, for, function, let x = 5;).
+
+## Hoisting
+
+- Hoisting is JavaScript's default behavior of moving declarations to the top of their scope.
+
+### Key Points
+
+1. **Variable Hoisting**
+
+   - `var` declarations are hoisted and initialized with `undefined`
+   - `let` and `const` are hoisted but not initialized (Temporal Dead Zone)
+
+2. **Function Hoisting**
+
+   - Function declarations are fully hoisted
+   - Function expressions are not hoisted (`const sum = a, b => a+b`)
+
+3. **Order of Precedence**
+   - Function declarations are hoisted before variable declarations
+
+## Examples
+
+### Variable Hoisting
+
+```javascript
+console.log(x); // Output: undefined
+var x = 5;
+
+console.log(y); // ReferenceError
+let y = 10;
+```

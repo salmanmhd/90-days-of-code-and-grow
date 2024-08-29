@@ -22,10 +22,10 @@
 
 ## Fundamentals
 
-- [ ] Primitive Types
-- [ ] Value Types and Reference Types
-- [ ] == vs === vs typeof
-- [ ] Expression vs Statement
+- [x] Primitive Types
+- [x] Value Types and Reference Types
+- [x] == vs === vs typeof
+- [x] Expression vs Statement
 
 ## Scope and Hoisting
 

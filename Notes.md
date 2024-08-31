@@ -216,3 +216,73 @@ var x = 5;
 console.log(y); // ReferenceError
 let y = 10;
 ```
+
+## Lexical Scoping
+
+## Closures
+
+**`Closure`** is function along with its lexical environment.
+
+### Key Points
+
+- **Encapsulation**: Closures allow private variables in JavaScript by wrapping data inside functions.
+- **Persistent State**: Variables in closures persist, even when the outer function has returned.
+- **Scope Chain**: The inner function maintains a reference to the variables in the outer scope.
+
+### Uses
+
+- Modules Design Pattern
+- Currying
+- functions like once
+- memoize
+- maintaining state in async world
+- setTimeouts
+- Iterators
+- and many more
+
+## IIFE
+
+An **IIFE** is a function that is **executed immediately** after being defined. It creates a new scope to avoid polluting the global scope.
+
+### Syntax
+
+```javascript
+(function () {
+  // Code inside IIFE
+})();
+```
+
+### Use Cases
+
+1. **Avoid Global Variable Pollution**  
+   Prevents variables from leaking into the global scope by encapsulating them in a local scope.
+
+2. **Encapsulation of Code**  
+   Keeps variables and functions private, avoiding naming conflicts and ensuring that the code remains isolated.
+
+3. **Safe Initialization**  
+   Executes initialization code that only needs to run once, such as configuration settings or setting up state.
+
+4. **Modular Code**  
+   Allows for the creation of self-contained modules of code that do not interfere with other parts of the application.
+
+5. **Event-Driven Code**  
+   Used to create isolated environments for event listeners, preventing variables from affecting other event handlers.
+
+6. **Avoid Variable Hoisting Issues**  
+   Since IIFEs are executed immediately, they help avoid issues with variable hoisting, ensuring variables are not misused before they are defined.
+
+## Callback functions
+
+## Higher Order Functions
+
+**Higher-Order Function** is a function that either:
+
+1. Takes one or more functions as arguments, or
+2. Returns a function as its result.
+
+## Common Use Cases
+
+1. **Callbacks**: Passing a function as an argument to another function, e.g., in event handling or asynchronous programming.
+2. **Function Composition**: Creating new functions by combining other functions.
+3. **Array Methods**: Methods like `.map()`, `.filter()`, and `.reduce()` are examples of higher-order functions.

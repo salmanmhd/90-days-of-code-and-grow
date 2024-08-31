@@ -1,23 +1,3 @@
-- Shallow copy vs deep copy
-- ES6 vs ES5
-- Writing polyfills, `reduce`, `map`, `filter`, `forEach`, `Promise.all`, `Promise`
-- Debouncing, throttling
-- `async defer`
-- Recursion
-- Class vs functions
-- Object functions: `defineProperty`, `seal`, `keys`, `freeze`, `values`, `getOwnPropertyNames`, `create`, `assign`
-- Event loop
-- `call`, `apply`, `bind`
-- Currying
-- Closures
-- Promises
-- Function declarations, statements
-- Hoisting
-- Prototype, prototypal inheritance
-- `async await`
-- Array functions: `forEach`, `map`, `reduce`, `filter`, `slice`, `splice`, `fill`
-- `setTimeout` vs `setInterval`
-
 # Important JavaScript Topics to Cover
 
 ## Fundamentals
@@ -29,16 +9,16 @@
 
 ## Scope and Hoisting
 
-- [ ] Function Scope, Block Scope and Lexical Scope
-- [ ] Scope
-- [ ] Hoisting
+- [x] Function Scope, Block Scope and Lexical Scope
+- [x] Scope
+- [x] Hoisting
 
 ## Functions and Closures
 
-- [ ] IIFE (Immediately Invoked Function Expression)
-- [ ] Closures
-- [ ] High Order Functions
-- [ ] Pure Functions, Side Effects, State Mutation and Event Propagation
+- [x] IIFE (Immediately Invoked Function Expression)
+- [x] Closures
+- [x] High Order Functions
+- [x] Pure Functions, Side Effects, State Mutation and Event Propagation
 
 ## Objects and Prototypes
 

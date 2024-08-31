@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Closure</title>
+    <link rel="script" href="closure.js" />
+  </head>
+  <body>
+    <button id="blue">Blue</button>
+    <button id="green">Green</button>
+    <script>
+      function clickHandler(color) {
+        return function () {
+          document.body.style.backgroundColor = `${color}`;
+        };
+      }
+
+      document.getElementById('blue').onclick = clickHandler('blue');
+      //   document.body.style.backgroundColor = `${color}`;
+      document.getElementById('green').onclick = () =>
+        (document.body.style.backgroundColor = `green`);
+    </script>
+  </body>
+</html>

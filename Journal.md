@@ -18,9 +18,21 @@ Overall the day was not good. I woke up late and not feel active all the day. Mo
 
 ### Tomorrow's Plan
 
+- Objects and Prototypes
+- Classes
+- Solve multiple questions
+
+## Day 5
+
+### Today's task:
+
 - [ ] Objects and Prototypes
 - [ ] Classes
 - [ ] Solve multiple questions
+
+### What went wrong
+
+### What can be improved
 
 <!-- ## Day _
 ### What went well

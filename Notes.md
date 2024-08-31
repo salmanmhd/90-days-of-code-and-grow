@@ -281,8 +281,88 @@ An **IIFE** is a function that is **executed immediately** after being defined. 
 1. Takes one or more functions as arguments, or
 2. Returns a function as its result.
 
-## Common Use Cases
+### Common Use Cases
 
 1. **Callbacks**: Passing a function as an argument to another function, e.g., in event handling or asynchronous programming.
 2. **Function Composition**: Creating new functions by combining other functions.
 3. **Array Methods**: Methods like `.map()`, `.filter()`, and `.reduce()` are examples of higher-order functions.
+
+## Pure Functoions
+
+1. Always `returns the same output`, for a given input. Not dependent on the external variables to return the output.
+2. `No side-effects` -
+
+### Example of a Pure Function:
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+```
+
+In this example:
+
+- **Deterministic**: For inputs `2` and `3`, the output will always be `5`.
+- **No Side Effects**: The function only computes and returns a value without altering any external state.
+
+**Note**: _If a pure function calls a pure function this isn’t a side effect and the calling function is still pure._
+
+## Side Effects
+
+A **side effect** occurs when a function interacts with external states or has observable effects outside of returning a value. Common examples of side effects include:
+
+- Modifying variables or objects outside the function scope.
+- Writing or reading from external resources (e.g., databases, files).
+- Manipulating the DOM or console logging.
+- Triggering network requests.
+
+### Example of a Function with Side Effects:
+
+```javascript
+let count = 0;
+
+function increment() {
+  count += 1;
+  return count;
+}
+```
+
+In this example:
+
+- **Non-deterministic**: The result depends on how many times `increment()` is called.
+- **Side Effect**: The global variable `count` is being modified.
+
+## Impure functions
+
+- DOM manipulation
+- Math.random()
+- new Date()
+- User input
+- File IO
+- Network Request
+-
+
+## Objects
+
+- `Singleton` - when objects are made with constructor then it's singleton objects like `Object.create`
+- `Object literals` - `const obj = {}`
+
+### Accessing Objects:
+
+1. `dot notaion` - we can access the values of objects using dot notaion like `student.name`
+2. square brackets - this can be also used to access the objects. Even this can be more useful sometime when the key is used like `"full name": "your full name"`. Then the only option by which we can access the objects is `student["full name"]`
+
+### Object freeze
+
+- `Object.freeze(student)` - it is used to stop any changes further. If anyone's trying to change the values of that object then it will not change and also no error will be thrown
+
+### Using symbol in Object
+
+```javascript
+const studetn = {
+  name: 'Random Name',
+  [symbol]: 'symbol Name',
+};
+```
+
+- Accessing symbol: `student[symbol]`

@@ -1,8 +1,6 @@
 # 90 days of code and Grow challenge
 
-## Day 1:
-
-### HTML
+## HTML
 
 ```HTML
 <!DOCTYPE html>
@@ -57,14 +55,14 @@ Semantic HTML uses meaningful tags that describe the purpose of content. Common 
 </header>
 ```
 
-### CSS
+## CSS
 
-#### Flexbox Essentials
+### Flexbox Essentials
 
 - **Main Axis**: Horizontal (by default).
 - **Cross Axis**: Vertical (by default).
 
-##### Alignment Properties
+#### Alignment Properties
 
 - **Justify-content**: Aligns items along the main axis.
 - **Align-items**: Aligns items along the cross axis.
@@ -90,7 +88,7 @@ Semantic HTML uses meaningful tags that describe the purpose of content. Common 
 - **Align-self**: Aligns a single item independently of others.
 - **`margin-right: auto;`**: Pushes the element to the far left, using available space.
 
-#### Grid
+### Grid
 
 - `grid-template-columns` & `grid-template-rows`
 
@@ -240,6 +238,31 @@ let y = 10;
 - Iterators
 - and many more
 
+## Functions
+
+```javascript
+function sum(num1, num2, ...num3) {
+  // num3 will have all the remaining values in the form of array - [3,4,5,6,7,8]
+}
+
+sum(1, 2, 3, 4, 5, 6, 7, 8);
+```
+
+- `this` give the current context, when used inside the functions it will all the values, etc
+
+## Arrow functions
+
+- When using {}, return keyword is required
+- () - no return required
+-
+
+### When not to use Arrow functions:
+
+1. Object methods
+2. prototypes
+3. Constructors
+4. Event handlers
+
 ## IIFE
 
 An **IIFE** is a function that is **executed immediately** after being defined. It creates a new scope to avoid polluting the global scope.
@@ -342,6 +365,73 @@ In this example:
 - Network Request
 -
 
+## Mutation
+
+**State mutation** occurs when the state (e.g., variables, objects, or arrays) in a program is directly modified or altered. In JavaScript, this can happen when you change the values of objects or arrays in place rather than creating a new version of that data.
+
+### Example of State Mutation:
+
+```javascript
+let state = { count: 0 };
+
+function incrementCount() {
+  state.count += 1; // Mutating the state
+}
+
+incrementCount();
+console.log(state.count); // Output: 1
+```
+
+In this example, the `state` object is directly modified within the `incrementCount()` function.
+
+## Problems with State Mutation
+
+State mutation can lead to several issues, including:
+
+- **Unpredictability**: The state can be modified by different parts of your code, potentially leading to unpredictable outcomes.
+- **Complex Testing**: Functions that mutate state are more difficult to test as they change external data.
+- **Concurrency Issues**: When dealing with asynchronous programming, state mutation can cause race conditions and inconsistent states.
+
+### Example of Asynchronous Mutation Issues:
+
+```javascript
+let state = { count: 0 };
+
+function asyncIncrement() {
+  setTimeout(() => {
+    state.count += 1; // Mutating state asynchronously
+    console.log(state.count);
+  }, 1000);
+}
+
+asyncIncrement();
+asyncIncrement();
+```
+
+Here, depending on the timing, `state.count` might not behave as expected, leading to potential concurrency issues.
+
+### Avoiding State Mutation
+
+#### Immutability
+
+One way to avoid mutation is by working with **immutable data structures**, where instead of changing the existing data, `you create and return a new version of the data with the necessary changes`.
+
+### Example of Avoiding Mutation:
+
+```javascript
+let state = { count: 0 };
+
+function incrementCount(state) {
+  return { ...state, count: state.count + 1 }; // Returning a new state object
+}
+
+let newState = incrementCount(state);
+console.log(newState.count); // Output: 1
+console.log(state.count); // Output: 0 (Original state remains unchanged)
+```
+
+In this case, we avoid mutation by using the spread operator to create a new object with updated values, rather than changing the existing object.
+
 ## Objects
 
 - `Singleton` - when objects are made with constructor then it's singleton objects like `Object.create`
@@ -366,3 +456,46 @@ const studetn = {
 ```
 
 - Accessing symbol: `student[symbol]`
+
+### Combining two objects
+
+```Javascript
+  const copiedObjects = Object.assign({}, obj1, obj2);
+```
+
+- the first object is the target object and rest are source. Using a blank object in the target will be useful in avoiding mutation.
+
+```Javascript
+  const copiedObjects = {...obj1, ...obj2};
+```
+
+- This is more easy way to combine objects
+
+### Getting key and values
+
+```javascript
+const keys = Object.keys(obj1);
+const values = Object.values(obj1);
+const keyValuePairInArray = Object.entries(obj1);
+```
+
+## Object Destructure
+
+```javascript
+const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  age: 30,
+  hobbies: ['reading', 'gaming', 'coding'],
+  address: {
+    street: '123 Main St',
+    city: 'New York',
+    country: 'USA',
+  },
+  fullName: function () {
+    return `${this.firstName} ${this.lastName}`;
+  },
+};
+
+const { firstName: name, lastName, age } = person;
+```

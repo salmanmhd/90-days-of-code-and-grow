@@ -60,3 +60,29 @@ const obj1 = {
 const arrowF = () => console.log(this);
 
 arrowF();
+
+const person2 = {
+  firstName: 'Samm',
+  lastName: 'Rei',
+};
+
+const person1 = {
+  firstName: 'John',
+  lastName: 'Doe',
+};
+
+function fullName(city, country, ...cities) {
+  return `${this.firstName} ${this.lastName} from  ${city}, ${country}. Other cities where visitied are: ${cities}`;
+}
+
+// console.log(fullName.call(person1, 'New York', 'USA'));
+console.log(
+  fullName.apply(person2, [
+    'New York',
+    'USA',
+    'Patna',
+    'Delhi',
+    'Mumbai',
+    'Chennai',
+  ])
+);

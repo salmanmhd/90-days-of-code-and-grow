@@ -24,15 +24,25 @@ Overall the day was not good. I woke up late and not feel active all the day. Mo
 
 ## Day 5
 
+The day was overall good, just bad start and bad ending. The mid was good, I completed some pending tasks, went to gym, prepare food for myself. Even studied for 4-5 hours. But after 6 pm I was not able to study properly.
+The worst is every time I have to deal with regrets, self doubts, and overthinking. This is the main reason to feel less confident and doubting own ability.
+
 ### Today's task:
 
-- [ ] Objects and Prototypes
-- [ ] Classes
-- [ ] Solve multiple questions
+- [x] Objects
+- ❌ Prototypes
+- ❌ Classes
+- ❌ Solve multiple questions
 
 ### What went wrong
 
+- Not manage the time properly after 6pm, I have to say NO to distractions.
+- Thinking more and doing less
+
 ### What can be improved
+
+- saying NO to distractions
+- manage time properly
 
 <!-- ## Day _
 ### What went well

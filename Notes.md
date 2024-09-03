@@ -471,6 +471,10 @@ const studetn = {
 
 - This is more easy way to combine objects
 
+### Object.create
+
+Create new object with the existing object
+
 ### Getting key and values
 
 ```javascript
@@ -486,16 +490,188 @@ const person = {
   firstName: 'John',
   lastName: 'Doe',
   age: 30,
-  hobbies: ['reading', 'gaming', 'coding'],
-  address: {
-    street: '123 Main St',
-    city: 'New York',
-    country: 'USA',
-  },
-  fullName: function () {
-    return `${this.firstName} ${this.lastName}`;
-  },
 };
 
 const { firstName: name, lastName, age } = person;
+```
+
+### Call method
+
+- This method is used to borrow functions for objects. Means we can use the functions outside objects or from other objects with `this` keyword.
+- `Method 1:` using functions of other objects
+
+```javascript
+const person = {
+  fullName: function (city, country) {
+    return `${this.firstName} ${this.lastName} from  ${city}, ${country} `;
+  },
+};
+
+const person1 = {
+  firstName: 'John',
+  lastName: 'Doe',
+};
+
+console.log(person.fullName.call(person1, 'New York', 'USA'));
+```
+
+- `Method 2:` using normal functions
+
+```javascript
+const person1 = {
+  firstName: 'Samm',
+  lastName: 'Rei',
+};
+
+const person2 = {
+  firstName: 'John',
+  lastName: 'Doe',
+};
+
+function fullName(city, country) {
+  return `${this.firstName} ${this.lastName} from  ${city}, ${country}`;
+}
+
+console.log(fullName.call(person1, 'New York', 'USA'));
+console.log(fullName.call(person2, 'New York', 'USA'));
+```
+
+### Apply method
+
+This is similar to call method, the only difference is how we are passing the arguments. we pass the arguments as array.
+
+```javascript
+console.log(fullName.apply(person1, ['New York', 'USA']));
+// we don't have to use array methods to use that elements
+```
+
+### Bind method
+
+Bind method returns a function which we can say is attached to the object that we pass and later on we have to invoke that function
+
+- The bind() method of Function instances creates a new function that, when called, calls this function with its this keyword set to the provided value
+
+```javascript
+const details = fullName.bind(person2, 'New York', 'USA');
+
+// now details is a new function bind to only person2, since this is a new function so when we have to use it we have invoke it
+// details();
+```
+
+### Prototype Inheritance and Prototype Chain
+
+Js attaches properties to the objects.
+
+## Destructuring
+
+### Object destructuring:
+
+- The name should match with the properties of objects
+- we can rename them by `objectProperties: newName`
+
+```javascript
+const obj = {
+  name: 'Salman',
+  address: 'New Delhi',
+  hometown: 'Patna',
+};
+
+const { name, hometown } = obj;
+// const { name: personName, hometown: city } = obj;
+```
+
+### Array destructuring:
+
+- In array destructuring the index position in important
+
+```javascript
+const arr = [1, 2, 3, 4, 5];
+
+// Destructuring the array
+const [first, second, third] = arr;
+```
+
+## Rest Operator
+
+```javascript
+const arr = [1, 2, 3, 4, 5, 6, 7, 8];
+
+// Destructuring the array
+const [first, second, third, ...rest] = arr;
+```
+
+## Spread Operator
+
+### Array
+
+```javascript
+const nums = [1, 2, 3, 4, 5, 6, 7, 8];
+const nums2 = [...nums, 9, 10, 11];
+```
+
+### Objects
+
+Creating a copy of objects and adding properties
+
+```javascript
+const obj1 = { name: 'Alice', age: 25 };
+const obj2 = { ...obj1, hometown: 'New York', profession: 'Engineer', age: 24 };
+// age will be updated to 24
+```
+
+## Reduce Method
+
+```javascript
+const totalPages = book.reduce((acc, book) => acc + book.pages, 0);
+```
+
+## Array Sorting
+
+```javascript
+const newArr = [5, 3, 7, 2, 31, 98, 90];
+
+console.log(newArr.sort()); // this is used to sort array consists of string values, for numbers it will give wrong output as it compares the digit not the value digit
+
+console.log(newArr.sort((a, b) => a - b));
+console.log(newArr.sort((a, b) => b - a));
+```
+
+## Updating array or objects
+
+```javascript
+const updatedBooks = books.map((book) =>
+  book.id === 1 ? { ...book, page: 210 } : book
+);
+```
+
+## Strings
+
+we can access the letters just like array `'str'[0]`
+
+```Javascript
+  const warning = "don't open that!";
+  console.log(warning.indexOf('t'))
+  console.log(warning.indexOf('open'))
+  console.log(warning.lastIndexOf('open'))
+
+  // SLICE - gives a part of string
+  console.log(warning.slice(4)) // start from 4th index
+  console.log(warning.slice(4, 9)) // start from 4, end at 8
+  console.log(warning.slice(-1)) // start from the end
+
+
+console.log(str1.trim()); // this will remove whitespaces
+console.log(str1.toLowerCase())
+
+
+const para = 'there are so many flowers in the garden, flowers look amazing';
+console.log(a.replaceAll('flowers', 'fruits')); // replace will work only on first occurence, replace do the work as name suggest
+
+.include("")
+.startsWith("")
+.endsWith("")
+
+.split(" ") // the string will be converted to an array as space separation
+
+.join("-") // will join the arrays separated by -
 ```

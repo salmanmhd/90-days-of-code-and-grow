@@ -22,7 +22,7 @@
 
 ## Objects and Prototypes
 
-- [ ] `this`, `call`, `apply` and `bind`
+- [x] `this`, `call`, `apply` and `bind`
 - [ ] Prototype Inheritance and Prototype Chain
 - [ ] Object.create and Object.assign
 

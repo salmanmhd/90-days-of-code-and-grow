@@ -674,4 +674,5 @@ console.log(a.replaceAll('flowers', 'fruits')); // replace will work only on fir
 .split(" ") // the string will be converted to an array as space separation
 
 .join("-") // will join the arrays separated by -
+
 ```

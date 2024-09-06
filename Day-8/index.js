@@ -27,18 +27,81 @@ const koalas = [
   [109, 95, 106],
 ];
 
-const d1 = average(dolphins[0]);
-const k1 = average(koalas[0]);
+// checkWinner(dolphins[0], koalas[0]);
+// checkWinner(dolphins[1], koalas[1]);
+// checkWinner(dolphins[2], koalas[2]);
 
-console.log(d1 > k1 ? 'dolphins are the winner' : 'koalar are the winner');
+function checkWinner(dScore, kScore) {
+  const d1 = average(dScore);
+  const k1 = average(kScore);
+  const isDolphinEligible = isEligible(dScore);
+  const isKoalaEligible = isEligible(kScore);
+  console.log('--------------------------------------------------------');
+  console.log(`dolphins score - ${d1} `);
+  console.log(`kolas score - ${k1}`);
+
+  if (isDolphinEligible && d1 > k1) {
+    console.log(`dolphins are the winner by ${(d1 - k1).toFixed(2)} score`);
+  } else if (isKoalaEligible && k1 > d1) {
+    console.log(`koalar are the winner by ${(k1 - d1).toFixed(2)} score`);
+  } else if (d1 == k1 && isDolphinEligible && isKoalaEligible) {
+    console.log(`Match tied, dolphins and koalas have same score - ${d1}`);
+  } else {
+    console.log(
+      `No one is winner, dolphin's score(${d1}) & koala's score(${k1})`
+    );
+  }
+}
 
 function average(arr) {
   const sum = arr.reduce((sum, i) => sum + i, 0);
-  return sum / arr.length;
+  return (sum / arr.length).toFixed(2);
 }
 
-// function winner(s1, s2) {
-//   const averageS1 = average(s1);
-//   const averageS2 = average(s2);
+function isEligible(s) {
+  const above100 = s.filter((i) => i > 100);
+  return above100.length > 0 ? true : false;
+}
 
-// }
+// CHALLENGE 4:
+
+function calculateTip(amount) {
+  const tipPercent = amount >= 50 && amount <= 300 ? 15 : 20;
+  const tipAmount = (tipPercent / 100) * amount;
+  console.log(
+    `For amount ${amount}, the tip was ${tipAmount} and the total amount is ${
+      amount + tipAmount
+    }`
+  );
+}
+
+// calculateTip(275);
+// calculateTip(40);
+// calculateTip(430);
+
+// CHALLENGE 5:
+function checkWinner2(d, k) {
+  const dolphinAverage = average(d);
+  const koalasAverage = average(k);
+
+  if (dolphinAverage >= koalasAverage * 2) {
+    console.log(`dolphins win(${dolphinAverage} vs ${koalasAverage})`);
+  } else if (koalasAverage > dolphinAverage * 2) {
+    console.log(`koalas win(${koalasAverage} vs ${dolphinAverage})`);
+  } else {
+    console.log('no winner');
+  }
+}
+
+const dolphin = [
+  [44, 23, 71],
+  [85, 54, 41],
+];
+const koala = [
+  [65, 54, 49],
+  [23, 34, 27],
+];
+
+checkWinner2(dolphin[0], koala[0]);
+checkWinner2(dolphin[1], koala[1]);
+// checkWinner2()

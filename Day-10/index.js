@@ -54,14 +54,16 @@ const players1Final = [...players1, 'Thiago', 'Coutino', 'Periscic'];
 const { team1, x: draw, team2 } = game.odds;
 
 // 6
-printGoals(...game.scored);
+// printGoals(...game.scored);
 
 function printGoals(...players) {
   console.log(`Total goals: ${players.length}`);
   console.log(players);
 }
 
-console.log(team1 < team2 ? `Team 1 will win` : 'Team 2 will win');
+// continues - CHALLENGE 2:
+
+// console.log(team1 < team2 ? `Team 1 will win` : 'Team 2 will win');
 
 // Looping over objects:
 const openHours = {
@@ -76,3 +78,68 @@ const entries = Object.entries(openHours);
 // for (const [day, { open, close }] of entries) {
 //   console.log(`On ${day}, we open at ${open} and close at ${close}`);
 // }
+
+function printGoals1(arr) {
+  let count = 1;
+  arr.map((player) => console.log(`Goal ${count++}: ${player}`));
+}
+
+// printGoals1(game.scored);
+
+const goalDetails = {};
+
+function goalsDetailsPrepare(obj, key) {
+  if (obj.hasOwnProperty(key)) {
+    obj[key] = obj[key] + 1;
+  } else {
+    obj[key] = 1;
+  }
+}
+
+game.scored.map((player) => goalsDetailsPrepare(goalDetails, player));
+
+// console.log(goalDetails);
+
+// AVERAGE OF ODDS:
+
+function averageOfOdds(obj) {
+  const values = Object.values(obj);
+  let sum = 0;
+  values.map((n) => (sum += n));
+  return (sum / values.length).toFixed(2);
+}
+
+// console.log(`the average of odds: ${averageOfOdds(game.odds)}`);
+
+// Printing odds in pretty format:
+// console.log(
+//   `This is not a variable ${typeof salman !== 'undefined' ? salman : 'salman'}`
+// );
+
+function printingOdds(obj) {
+  const entries = Object.entries(obj);
+
+  for (const [team, odds] of entries) {
+    const teamName = game.hasOwnProperty(team) ? game[team] : team;
+    console.log(
+      `Odd of${teamName === 'x' ? '' : ' victory'} ${
+        teamName === 'x' ? 'draw' : teamName
+      }: ${odds}`
+    );
+  }
+}
+
+// printingOdds(game.odds);
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '🔶 Yellow card'],
+]);

@@ -80,4 +80,42 @@ function printProperties(obj) {
   }
 }
 
-printProperties(workoutRoutine);
+// printProperties(workoutRoutine);
+
+const name = { first: 1, last: 2 };
+
+function count(value) {
+  // first
+  if (name.hasOwnProperty(value)) {
+    name[value] = name[value] + 1;
+  } else {
+    name[value] = 1;
+  }
+}
+
+count('last');
+count('last');
+count('last');
+count('first');
+
+// console.log(name);
+
+const abc = {
+  team1: 1.33,
+  x: 3.25,
+  team2: 6.5,
+};
+
+// const a = []
+console.log(`The next is the unavailable value ${abc['123']}`);
+
+// printABC(abc);
+function printABC(abc) {
+  const entries = Object.entries(abc);
+
+  for (const [team, odd] of entries) {
+    console.log(team, odd);
+  }
+}
+
+// const arr =

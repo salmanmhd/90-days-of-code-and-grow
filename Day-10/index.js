@@ -129,7 +129,6 @@ function printingOdds(obj) {
   }
 }
 
-// printingOdds(game.odds);
 const gameEvents = new Map([
   [17, '⚽ GOAL'],
   [36, '🔁 Substitution'],
@@ -143,3 +142,67 @@ const gameEvents = new Map([
   [80, '⚽ GOAL'],
   [92, '🔶 Yellow card'],
 ]);
+
+console.log(
+  `An event happened, on average every ${calculateAverageEventTime(
+    gameEvents
+  )} minutes`
+);
+
+loopingOverEveryEvents(gameEvents);
+
+function loopingOverEveryEvents(event) {
+  for (const [key, value] of event) {
+    console.log(`[${key <= 45 ? 'FIRST' : 'SECOND'} HALF] ${key}: ${value}`);
+  }
+}
+
+function calculateAverageEventTime(event) {
+  let prevTime = 0;
+  const length = event.size;
+  let sum = 0;
+  for (const [key, value] of event) {
+    sum += key - prevTime;
+    prevTime = key;
+  }
+
+  return Math.round(sum / length);
+}
+
+const events = new Set();
+for (const [key, value] of gameEvents) {
+  events.add(value);
+}
+
+// gameEvents.delete(64);
+// console.log(gameEvents);
+
+// console.log(events);
+
+// -------------STRING -----------------
+const str = 'calculate_AGE';
+//    first_name Some_Variable calculate_AGE delayed_departure ';
+
+// function camelCase(str) {
+//   let splitted = str.split('_'); // underscore case
+//   splitted[1] = splitted[1].toLowerCase();
+//   const a = splitted[1].replace(splitted[1][0], splitted[1][0].toUpperCase());
+//   splitted[1] = a;
+//   const ans = splitted.join('');
+//   console.log(ans);
+// }
+
+function camelCase(str) {
+  return str
+    .split('_') // Split the string at the underscore
+    .map((word, index) =>
+      index === 0
+        ? word.toLowerCase()
+        : word[0].toUpperCase() + word.slice(1).toLowerCase()
+    )
+    .join('');
+}
+// console.log(camelCase(str));
+
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';

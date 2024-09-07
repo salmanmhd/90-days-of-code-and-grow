@@ -118,4 +118,28 @@ function printABC(abc) {
   }
 }
 
-// const arr =
+// const newSet = new Set([1, 2, 3, 4, 5]); // iterator is required to ceate new Set
+// newSet.add(5); // add element at the end
+// newSet.delete(4); // delete any element
+// newSet.has(5); // chech if it has?
+// newSet.size;
+// // newSet.clear();
+
+// const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 6, 5, 4, 3, 2, 1, 2, 34, 54, 5];
+
+// const newArray = [...new Set(arr1)]; // removing duplicates from an array
+
+const chainMap = new Map()
+  .set('name', 'John')
+  .set('age', 30)
+  .set('job', 'Engineer');
+
+chainMap.set(1, 'Software Engineer');
+
+console.log(chainMap);
+
+const str = 'this_name';
+console.log(str.replace('t', 'T'));
+// console.log()
+const splitted = str.split('_'); // this, name
+console.log(splitted.join(''));

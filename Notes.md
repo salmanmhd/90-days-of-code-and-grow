@@ -709,3 +709,122 @@ function maskCardNumber(cardNumber) {
 
 
 ```
+
+## Sets
+
+Set is another form of array we can say but there are majorly two differences:
+
+1. It stores only unique values
+2. It is not like index based, but LIFO just like linked list
+
+```javascript
+const newSet = new Set([1, 2, 3, 4, 5]); // iterator is required to ceate new Set
+newSet.add(5); // add element at the end
+newSet.delete(4); // delete any element
+newSet.has(5); // chech if it has?
+newSet.size;
+// newSet.clear();
+
+const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 6, 5, 4, 3, 2, 1, 2, 34, 54, 5];
+
+const newArray = [...new Set(arr1)]; // removing duplicates from an array
+```
+
+## Maps
+
+### Methods of Map:
+
+- `set(key, value)`: Adds or updates the value for the given key.
+- `get(key)`: Retrieves the value associated with the key.
+- `has(key)`: Checks whether the key exists in the map.
+- `delete(key)`: Removes the key-value pair.
+- `clear()`: Removes all key-value pairs.
+- `size`: Returns the number of key-value pairs.
+<!-- --------------------- -->
+
+Sure! Here's a concise note on the `Map` object in JavaScript, formatted in Markdown:
+
+````markdown
+# JavaScript `Map` Object
+
+## Introduction
+
+The `Map` object in JavaScript holds key-value pairs and remembers the original insertion order of the keys. Any value (both objects and primitive values) may be used as either a key or a value.
+
+## Key Features
+
+- **Unique Keys**: Each key in a `Map` is unique.
+- **Insertion Order**: Iteration happens in the order of entry insertion.
+- **Any Data Type**: Keys and values can be of any data type.
+
+## Basic Usage
+
+### Creating a Map
+
+```javascript
+let map = new Map();
+```
+````
+
+### Adding Entries
+
+```javascript
+map.set('key1', 'value1');
+map.set('key2', 'value2');
+```
+
+### Accessing Values
+
+```javascript
+let value = map.get('key1'); // 'value1'
+```
+
+### Checking for Keys
+
+```javascript
+let hasKey = map.has('key1'); // true
+```
+
+### Removing Entries
+
+```javascript
+map.delete('key1');
+```
+
+### Iterating Over a Map
+
+```javascript
+for (let [key, value] of map) {
+  console.log(key, value);
+}
+```
+
+### Size of the Map
+
+```javascript
+let size = map.size; // 1
+```
+
+### Clearing the Map
+
+```javascript
+map.clear();
+```
+
+## Comparison with Objects
+
+- **Accidental Keys**: `Map` does not contain any keys by default, whereas `Object` has a prototype with default keys.
+- **Key Types**: `Map` keys can be any value, while `Object` keys must be strings or symbols.
+- **Order**: `Map` maintains the order of entries, while `Object` does not guarantee order.
+
+## Example
+
+```javascript
+let map = new Map([
+  ['name', 'John'],
+  ['age', 30],
+]);
+
+console.log(map.get('name')); // John
+console.log(map.size); // 2
+```

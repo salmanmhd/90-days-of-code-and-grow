@@ -24,7 +24,7 @@
 
 - [x] `this`, `call`, `apply` and `bind`
 - [ ] Prototype Inheritance and Prototype Chain
-- [ ] Object.create and Object.assign
+- [x] Object.create and Object.assign
 
 ## Classes and Inheritance
 
@@ -52,7 +52,7 @@
 - [ ] DOM and Layout Trees
 - [ ] Partial Applications, Currying, Compose and Pipe
 - [ ] Collections and Generators
-- [ ] Data Structures
+- [x] Data Structures
 - [ ] Expensive Operation and Big O Notation
 - [ ] Algorithms
 - [ ] Design Patterns
@@ -62,4 +62,4 @@
 
 - [ ] ES6 vs ES5
 - [ ] Modules and Namespaces
-- [ ] Function Declarations and Statements
+- [x] Function Declarations and Statements

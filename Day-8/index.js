@@ -102,6 +102,45 @@ const koala = [
   [23, 34, 27],
 ];
 
-checkWinner2(dolphin[0], koala[0]);
-checkWinner2(dolphin[1], koala[1]);
+// checkWinner2(dolphin[0], koala[0]);
+// checkWinner2(dolphin[1], koala[1]);
 // checkWinner2()
+
+// ---------- CHALLENGE 6
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+function calculateTip1(amount, tips, totals) {
+  const tipPercent = amount >= 50 && amount <= 300 ? 15 : 20;
+  const tipAmount = (tipPercent / 100) * amount;
+  const totalAmount = amount + tipAmount;
+  tips.push(tipAmount);
+  totals.push(totalAmount);
+}
+
+bills.map((amount) => calculateTip1(amount, tips, totals));
+const averageTips = average(tips);
+// const averageTotals = average(totals);
+// console.log(tips);
+// console.log(totals);
+// console.log(`Average tip is ${averageTips}`);
+// console.log(`Average total is ${averageTotals}`);
+
+// CHALLENGE 7:
+
+function printTemp(arr) {
+  let day = 1;
+  const celcius = '\u00B0C';
+
+  arr.map((temp) =>
+    process.stdout.write(`... ${temp}${celcius} in ${day}days`)
+  );
+  console.log();
+}
+
+const set1 = [17, 21, 23];
+const set2 = [12, 5, -5, 0, 4];
+printTemp(set1);
+printTemp(set2);

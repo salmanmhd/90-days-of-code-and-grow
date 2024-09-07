@@ -483,6 +483,29 @@ const values = Object.values(obj1);
 const keyValuePairInArray = Object.entries(obj1);
 ```
 
+## Looping over Objects:
+
+```Javascript
+  // iterating over keys or values
+  for(const keys of Object.keys(obj)){
+    console.log(keys); // printing keys - for values just Object.values(obj)
+  }
+
+  // Iterating through the Object
+const openHours = {
+  Sun: { open: 12, close: 23 },
+  Mon: { open: 9, close: 23 },
+  Tue: { open: 9, close: 23 },
+  Wed: { open: 9, close: 23 },
+};
+
+const entries = Object.entries(openHours);
+
+for (const [day, { open, close }] of entries) {
+  console.log(`On ${day}, we open at ${open} and close at ${close}`);
+}
+```
+
 ## Object Destructure
 
 ```javascript

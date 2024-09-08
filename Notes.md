@@ -828,3 +828,7 @@ let map = new Map([
 console.log(map.get('name')); // John
 console.log(map.size); // 2
 ```
+
+<!-- ----------------  FORKIFY APP  --------------- -->
+
+- `User story` - description of the app's functionality from the user's perspective

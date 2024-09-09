@@ -432,6 +432,25 @@ console.log(state.count); // Output: 0 (Original state remains unchanged)
 
 In this case, we avoid mutation by using the spread operator to create a new object with updated values, rather than changing the existing object.
 
+## Array
+
+## Array Handbook
+
+This handbook explores various methods for manipulating arrays in JavaScript.
+
+**Covered Methods:**
+
+- `push()`: Adds an element to the end of the array.
+- `pop()`: Removes the last element from the array.
+- `shift()`: Removes the first element from the array.
+- `unshift()`: Adds an element to the beginning of the array.
+- `concat()`: Creates a new array by merging existing arrays.
+- `forEach()`: Executes a provided function once for each array element.
+- `map()`: Creates a new array with elements transformed by a provided function.
+- `filter()`: Creates a new array with elements that pass a test implemented by a provided function.
+- `find()`: Returns the value of the first element in the array that satisfies a provided testing function.
+- `sort()`: Sorts the elements of an array in place and returns the sorted array.
+
 ## Objects
 
 - `Singleton` - when objects are made with constructor then it's singleton objects like `Object.create`
@@ -742,7 +761,7 @@ const newArray = [...new Set(arr1)]; // removing duplicates from an array
 - `size`: Returns the number of key-value pairs.
 <!-- --------------------- -->
 
-## Introduction
+### Introduction
 
 The `Map` object in JavaScript holds key-value pairs and remembers the original insertion order of the keys. Any value (both objects and primitive values) may be used as either a key or a value.
 
@@ -827,4 +846,62 @@ console.log(map.size); // 2
 
 - `User story` - description of the app's functionality from the user's perspective
 
-## Dates and Time:
+## Classes:
+
+- `static method`: it can be used to store the methods that is not related to objects of that class but to that class only. **Can only be called by the class itself not by the objects of that class**
+
+```javascript
+ class Student{
+  constructor(name, id, class){
+    this.name = name;
+    this.id = id;
+    this.class = class;
+  }
+
+  static details(){
+    console.log("I am the class to store student details")
+  }
+
+  studentDetails(){
+    console.log(`${this.name} is a student of class ${this.class} and the roll no is ${this.id}`)
+  }
+
+ }
+```
+
+## Date Methods in JavaScript
+
+- **Creating a Date Object:** `new Date()`
+- **Getting Date Components:**
+  - `getDate()`
+  - `getMonth()`
+  - `getFullYear()`
+  - `getHours()`
+  - `getMinutes()`
+  - `getSeconds()`
+- **Setting Date Components:**
+  - `setFullYear(year)`
+  - `setMonth(month)`
+- **Time in Milliseconds:** `getTime()`
+- **Creating a New Date:** `new Date(year, month, day)`
+
+## JSON
+
+- `JSON.parse` - parse data from JSON
+- `JSON.stringify` - convert object into string
+
+## Maths
+
+## Math Methods in JavaScript
+
+- **Rounding:**
+  - `round()`
+  - `ceil()`: 2.3 -> 3
+  - `floor()`: 2.3 -> 2
+- **Random Numbers:** `random()`
+- **Maximum and Minimum:**
+  - `max()`
+  - `min()`
+- **Exponentiation and Square Root:**
+  - `pow()`
+  - `sqrt()`

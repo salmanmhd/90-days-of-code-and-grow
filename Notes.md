@@ -742,11 +742,6 @@ const newArray = [...new Set(arr1)]; // removing duplicates from an array
 - `size`: Returns the number of key-value pairs.
 <!-- --------------------- -->
 
-Sure! Here's a concise note on the `Map` object in JavaScript, formatted in Markdown:
-
-````markdown
-# JavaScript `Map` Object
-
 ## Introduction
 
 The `Map` object in JavaScript holds key-value pairs and remembers the original insertion order of the keys. Any value (both objects and primitive values) may be used as either a key or a value.
@@ -764,7 +759,6 @@ The `Map` object in JavaScript holds key-value pairs and remembers the original 
 ```javascript
 let map = new Map();
 ```
-````
 
 ### Adding Entries
 

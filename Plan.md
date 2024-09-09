@@ -35,7 +35,7 @@
 ## Asynchronous JavaScript
 
 - [ ] Message Queue and Event Loop
-- [ ] setTimeout, setInterval and requestAnimationFrame
+- [x] setTimeout, setInterval and requestAnimationFrame
 - [ ] Callbacks
 - [ ] Promises
 - [ ] async/await

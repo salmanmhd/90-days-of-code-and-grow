@@ -846,6 +846,8 @@ console.log(map.size); // 2
 
 - `User story` - description of the app's functionality from the user's perspective
 
+<!-- ------------------------------- -->
+
 ## Classes:
 
 - `static method`: it can be used to store the methods that is not related to objects of that class but to that class only. **Can only be called by the class itself not by the objects of that class**
@@ -905,3 +907,57 @@ console.log(map.size); // 2
 - **Exponentiation and Square Root:**
   - `pow()`
   - `sqrt()`
+
+## Async in JavaScript
+
+### Key Async Functions:
+
+- **`setTimeout()`**:
+  - Schedules a function to execute after a set time.
+  - Example: `setTimeout(() => console.log("Hello!"), 1000);`
+- **`fs.readFile()`** (Node.js):
+
+  - Asynchronously reads a file from the filesystem.
+  - Example:
+    ```js
+    const fs = require('fs');
+    fs.readFile('file.txt', 'utf8', (err, data) => {
+      if (err) throw err;
+      console.log(data);
+    });
+    ```
+
+- **`fetch()`**:
+  - Makes asynchronous network requests, typically to get data from a server.
+  - Example:
+    ```js
+    fetch('https://api.example.com/data')
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+    ```
+
+---
+
+### Async Architecture:
+
+- **Call Stack**:
+
+  - Manages the execution of synchronous code. Functions are pushed and popped in a LIFO order.
+
+- **Web APIs**:
+
+  - External environments like timers, HTTP requests, etc., that handle async operations outside the call stack.
+
+- **Callback Queue**:
+
+  - Holds asynchronous callbacks waiting for execution. These are processed by the event loop after the call stack is empty.
+
+- **Event Loop**:
+  - Monitors the call stack and callback queue. It moves tasks from the queue to the stack when the stack is empty, ensuring async callbacks are executed.
+
+### The async process:
+
+1. the code will start with the call stack and run normally until any async code is there
+2. When there is any async code, it will push to the web apis. Now the call stack will execute further, besides this the web apis is running side by side.
+3. when web apis completed a task, it will move the callback queue. That async task will reach which is completed, no matter which starts first
+4. when the stack is empty, then event loop will move the tasks from queue to stack.

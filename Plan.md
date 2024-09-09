@@ -28,7 +28,7 @@
 
 ## Classes and Inheritance
 
-- [ ] Factories and Classes
+- [x] Factories and Classes
 - [ ] new, Constructor, instanceof and Instances
 - [ ] Inheritance, Polymorphism and Code Reuse
 

@@ -34,6 +34,9 @@ class Calculator {
   }
 
   divide(n) {
+    if (n == 0) {
+      throw new Error("Can't divide by 0");
+    }
     this.result = this.result / n;
   }
 
@@ -45,7 +48,13 @@ class Calculator {
     return this.result;
   }
 
-  calculate(str) {}
+  calculate(str) {
+    this.result = eval(str.replace(/\s+/g, ' '));
+    if (this.result === Infinity) {
+      throw new Error('Infinity');
+    }
+    return this.result;
+  }
 }
 
 module.exports = Calculator;

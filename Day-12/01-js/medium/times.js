@@ -7,7 +7,18 @@ Try running it for
 Hint - use Date class exposed in JS
 There is no automated test for this one, this is more for you to understand time goes up as computation goes up
 */
-
 function calculateTime(n) {
-    return 0.01;
+  const startTime = new Date().getTime(); // Time in milliseconds
+  let sum = 0;
+
+  for (let i = 0; i < n; i++) {
+    sum += i;
+  }
+
+  const endTime = new Date().getTime(); // Time in milliseconds
+  const elapsedTime = endTime - startTime;
+
+  console.log(elapsedTime + ' ms'); // Output the time difference in milliseconds
 }
+
+calculateTime(10000000000);

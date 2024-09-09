@@ -826,3 +826,5 @@ console.log(map.size); // 2
 <!-- ----------------  FORKIFY APP  --------------- -->
 
 - `User story` - description of the app's functionality from the user's perspective
+
+## Dates and Time:

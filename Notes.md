@@ -961,3 +961,15 @@ console.log(map.size); // 2
 2. When there is any async code, it will push to the web apis. Now the call stack will execute further, besides this the web apis is running side by side.
 3. when web apis completed a task, it will move the callback queue. That async task will reach which is completed, no matter which starts first
 4. when the stack is empty, then event loop will move the tasks from queue to stack.
+
+## Promises
+
+```javascript
+function asyncFunc() {
+  return new Promise((resolve) => {
+    resolve('Hi there');
+  });
+}
+
+const data = asyncFunc().then(() => console.log(data));
+```

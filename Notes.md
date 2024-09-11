@@ -973,3 +973,20 @@ function asyncFunc() {
 
 const data = asyncFunc().then(() => console.log(data));
 ```
+
+# Node JS
+
+Node is a runtime
+
+ecmascript, javascript, node, bun
+
+## HTTP Server:
+
+1. A protocol that is defined for machines to communicate
+2. Specifically for websites, it is the most common way for your website's frontend to talk to its backend
+
+# Environment Variables
+
+process.env.PORT || 3000
+
+# Express

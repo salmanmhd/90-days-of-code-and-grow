@@ -3,7 +3,7 @@ const obj = {
   roll: 12,
 };
 
-console.log(Object.entries(obj));
+// console.log(Object.entries(obj));
 
 function iterate(entries) {
   for (const [key, value] of entries) {
@@ -11,4 +11,15 @@ function iterate(entries) {
   }
 }
 
-iterate(Object.entries(obj));
+// iterate(Object.entries(obj));
+
+let s = 'salman';
+let rank = 1;
+
+console.log(s);
+console.log(rank);
+s = 'faizan';
+
+rank = 12;
+console.log(s);
+console.log(rank);

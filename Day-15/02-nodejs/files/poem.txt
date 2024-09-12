@@ -1,0 +1,5 @@
+In the world of code, where logic reigns, You craft with skill, through trials and gains. With Tailwind’s hues and JavaScript's might, You weave your dreams in the digital night.
+
+From bg-customPurple to border-white, You shape the web with colors so bright. Your React components, styled with flair, Turn simple lines into visions rare.
+
+In arrays and functions, your logic flows, With spread and map, your knowledge grows. Deletions and routes in Node.js, You tackle each challenge with poise and finesse.

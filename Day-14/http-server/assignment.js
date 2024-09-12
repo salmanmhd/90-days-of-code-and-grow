@@ -6,8 +6,8 @@
 
 const express = require('express');
 const app = express();
-const port = 3001;
-
+const port = 3002;
+app.use(express.json());
 const kidneyDetails = [
   {
     leftKidney: 'fit',
@@ -17,12 +17,10 @@ const kidneyDetails = [
     leftKidney: 'fit',
     rightKidney: 'fit',
   },
-  ,
   {
     leftKidney: 'unfit',
     rightKidney: 'unfit',
   },
-  ,
   {
     leftKidney: 'unfit',
     rightKidney: 'unfit',
@@ -55,6 +53,10 @@ app.get('/', (req, res) => {
   res.json({ ...data, numberOfKidneys: validKidneyDetails.length * 2 });
 });
 
+app.get('/kidney', (req, res) => {
+  res.send(kidneyDetails);
+});
+
 app.get('/kidneyDetail', (req, res) => {
   const id = parseInt(req.query.id, 10); // Parse the id from query params as an integer
 
@@ -79,6 +81,34 @@ app.post('/add', (req, res) => {
   kidneyDetails.push(newKidney);
   res.json({ message: 'Kidney successfully added', kidneyDetails });
 });
+
+app.put('/replace', (req, res) => {
+  const data = req.body;
+  const index = Number(req.query.id);
+
+  if (index >= 0 && index < kidneyDetails.length) {
+    kidneyDetails[index] = data; // Replace the element at the specific index
+
+    res.send(
+      `Kidney details have been updated: ${JSON.stringify(kidneyDetails)}`
+    );
+  } else {
+    res.status(400).send('Invalid index');
+  }
+});
+
+app.delete('/delete', (req, res) => {
+  const index = Number(req.query.id);
+
+  const removedData = kidneyDetails.splice(index, 1);
+
+  res.send(
+    `The following data has been removed: ${JSON.stringify(
+      removedData
+    )} and the remaining kidneyDetails: ${JSON.stringify(kidneyDetails)}`
+  );
+});
+
 app.listen(port, () => {
   console.log(`running on ${port}`);
 });

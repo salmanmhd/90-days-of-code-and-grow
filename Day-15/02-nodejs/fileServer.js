@@ -13,16 +13,48 @@
     Testing the server - run `npm run test-fileServer` command in terminal
  */
 const express = require('express');
-const fs = require('fs');
+const fs = require('fs').promises; // Use promises API directly
 const path = require('path');
 const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+// Endpoint to get the list of files
+app.get('/files', async (req, res) => {
+  try {
+    const directoryPath = path.join(__dirname, 'files');
+    const files = await fs.readdir(directoryPath);
+    res.status(200).json(files);
+  } catch (error) {
+    res.status(500).send(`Error: ${error.message}`);
+  }
+});
+
+// Endpoint to get a specific file's content
+app.get('/file/:filename', async (req, res) => {
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, 'files', filename);
+
+  try {
+    const data = await fs.readFile(filePath, 'utf-8');
+    res.status(200).send(data);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      res.status(404).send('File not found');
+    } else {
+      res.status(500).send(`Error: ${error.message}`);
+    }
+  }
+});
+
+// Handle invalid routes
+app.use((req, res) => {
+  res.status(404).send('Route not found');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 module.exports = app;
-
-try {
-  // Read directory contents synchronously
-  const files = fs.readdirSync(directoryPath);
-  console.log('Files in directory:', files);
-} catch (err) {
-  console.error('Unable to read directory: ', err);
-}

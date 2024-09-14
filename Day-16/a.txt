@@ -1,0 +1,86 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "final_space": true,
+  "osc99": true,
+  "console_title": true,
+  "console_title_style": "template",   
+
+  "template": "[{{hostname}}] {{user}} {{cwd}} {{time}}",
+  "elements": [
+    {
+      "type": "time",
+      "position": "right",
+      "format": "%H:%M:%S",
+      "foreground": "#ffffff",
+      "background": "gradient(#0088ff, #0044cc)"
+    },
+    {
+      "type": "user",
+      "position": "right",
+      "foreground": "#ffffff",
+      "background": "gradient(#1f77b4, #005cb8)"
+    },
+    {
+      "type": "hostname",
+      "position": "right",
+      "foreground": "#ffffff",
+      "background": "gradient(#2ca02c, #008000)"
+    },
+    {
+      "type": "cwd",
+      "position": "right",
+      "foreground": "#ffffff",
+      "background": "gradient(#d62728, #800000)"
+    },
+    {
+      "type": "powerline",
+      "position": "right",
+      "separator": "",
+      "foreground": "#ffffff",
+      "background": "#000000"
+    },
+    {
+      "type": "git",
+      "position": "left",
+      "foreground": "#ffffff",
+      "background": "#000000"
+    },
+    {
+      "type": "battery",
+      "position": "left",
+      "foreground": "#ffffff",
+      "background": "#000000"
+    },
+    {
+      "type": "network",
+      "position": "left",
+      "foreground": "#ffffff",
+      "background": "#000000"
+    },
+    {
+      "type": "uptime",
+      "position": "left",
+      "foreground": "#ffffff",
+      "background": "#000000"
+    },
+    {
+      "type": "weather",
+      "position": "left",
+      "foreground": "#ffffff",
+      "background": "#000000"
+    },
+    {
+      "type": "system",
+      "position": "left",
+      "foreground": "#ffffff",
+      "background": "#000000"
+    },
+    {
+      "type": "custom",
+      "position": "left",
+      "foreground": "#ffffff",
+      "background": "#000000",
+      "template": "Custom Text"
+    }
+  ]
+}

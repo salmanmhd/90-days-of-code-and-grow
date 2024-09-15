@@ -990,3 +990,17 @@ ecmascript, javascript, node, bun
 process.env.PORT || 3000
 
 # Express
+
+# JWT
+
+```js
+// TOKENISE
+var token = jwt.sign({ username: username }, jwtPassword);
+return res.json({
+  token,
+});
+
+// DETOKENISE
+const decoded = jwt.verify(token, jwtPassword);
+const username = decoded.username;
+```

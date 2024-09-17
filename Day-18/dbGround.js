@@ -1,5 +1,5 @@
-const string =
-  'mongodb+srv://devsalman010:d2HOWysVoYrfn2WR@resurrection.p7b8n.mongodb.net/newUsers';
+require('dotenv').config();
+const string = process.env.MONGO_ID;
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();

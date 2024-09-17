@@ -1,10 +1,10 @@
-const string =
-  'mongodb+srv://devsalman010:d2HOWysVoYrfn2WR@resurrection.p7b8n.mongodb.net/newUsers';
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
 app.use(express.json());
-mongoose.connect(string);
+require('dotenv').config();
+
+mongoose.connect(process.env.MONGODB_URI);
 
 const User = mongoose.model('Users', {
   name: String,

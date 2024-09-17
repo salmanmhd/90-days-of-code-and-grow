@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-mongoose.connect(
-  'mongodb+srv://devsalman010:d2HOWysVoYrfn2WR@resurrection.p7b8n.mongodb.net/course'
-);
+mongoose.connect(process.env.MONGODB_URI);
 
 const AdminSchema = new mongoose.Schema({
   username: String,

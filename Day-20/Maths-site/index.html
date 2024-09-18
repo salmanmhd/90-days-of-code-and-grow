@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    let timer;
+    function debouncedSum() {
+      clearTimeout(timer);
+      setTimeout(() => {
+        populateDiv();
+      }, 300);
+    }
+    async function populateDiv() {
+      const element = document.getElementById('finalSum');
+      const a = Number(document.getElementById('inputOne').value);
+      const b = Number(document.getElementById('inputTwo').value);
+      const ans = await fetch(`http://localhost:3000/sum?a=${a}&b=${b}`);
+      const sum = await ans.text();
+      console.log(sum);
+      element.innerHTML = `${sum}`;
+    }
+
+    async function interest() {
+      const element = document.getElementById('interest');
+      element.innerHTML = '';
+      const p = Number(document.getElementById('p').value);
+      const r = Number(document.getElementById('r').value);
+      const t = Number(document.getElementById('t').value);
+
+      const response = await fetch(
+        `http://localhost:3000/interes?p=${p}&r=${r}&t=${t}`
+      );
+      const ans = await response.json();
+      console.log(ans);
+      const totalElement = document.createElement('p');
+      totalElement.textContent = `Total Amount: ${ans.total}`;
+      element.appendChild(totalElement);
+
+      const interestElement = document.createElement('p');
+      interestElement.textContent = `Total Interest: ${ans.interest}`;
+      element.appendChild(interestElement);
+    }
+  </script>
+  <body>
+    <h1>Sum of Two Numbers</h1>
+    <input
+      oninput="debouncedSum()"
+      id="inputOne"
+      type="text"
+      placeholder="First number"
+    />
+    <br />
+    <input
+      oninput="debouncedSum()"
+      id="inputTwo"
+      type="text"
+      placeholder="Second number"
+    /><br />
+    <div id="finalSum"></div>
+
+    <h1>Calculate Interest</h1>
+    <input id="p" type="text" placeholder="Principle" /> <br />
+    <input id="r" type="text" placeholder="Rate" /><br />
+    <input id="t" type="text" placeholder="Time" /><br />
+    <button onclick="interest()">Calculate sum</button><br />
+    <div id="interest"></div>
+  </body>
+</html>

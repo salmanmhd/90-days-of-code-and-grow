@@ -14,15 +14,15 @@
     <div id="output"></div>
 
     <script>
+      function autoTodo(params) {}
+
       function markDone() {
         const button = document.getElementById('add-btn');
         button.innerHTML = 'Done✅';
       }
 
-      function addTodo() {
+      function addTodo(title, desc) {
         const element = document.getElementById('output');
-        const title = document.getElementById('titleInput').value;
-        const desc = document.getElementById('descInput').value;
         console.log(desc, title);
 
         const todoElement = document.createElement('div');

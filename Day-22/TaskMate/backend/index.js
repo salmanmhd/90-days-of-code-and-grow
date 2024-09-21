@@ -66,6 +66,26 @@ app.put('/completed', async (req, res) => {
   }
 });
 
+app.delete('/todo/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await todo.deleteOne({ _id: id });
+    console.log(result);
+    if (result.acknowledged) {
+      res.status(200).json({
+        msg: 'Deleted successfully!',
+      });
+    } else {
+      res.status(404).json({
+        msg: 'To do not found',
+      });
+    }
+  } catch (error) {
+    console.log('error: ', error);
+    res.json({ error });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`running on port ${PORT}`);
 });

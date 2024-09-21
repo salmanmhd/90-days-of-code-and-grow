@@ -32,9 +32,16 @@ function App() {
     }
   }
 
-  function onDelete(id) {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
+  async function onDelete(id) {
+    const response = await fetch(`http://localhost:3001/todo/${id}`, {
+      method: 'DELETE',
+    });
+    if (response.ok) {
+      const newTodos = todos.filter((todo) => todo._id !== id);
+      setTodos(newTodos);
+    } else {
+      console.log('todo not deleted');
+    }
   }
 
   async function onComplete(id) {

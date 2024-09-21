@@ -1,3 +1,4 @@
+import { MdDelete } from 'react-icons/md';
 function TodoList({ todo, onComplete, onDelete }) {
   return (
     <ul
@@ -12,14 +13,14 @@ function TodoList({ todo, onComplete, onDelete }) {
         <input
           type='checkbox'
           checked={todo.completed}
-          className='w-6 h-6 cursor-pointer accent-yellow-300'
+          className='w-4 h-4 cursor-pointer accent-yellow-300'
           onChange={() => onComplete({ id: todo._id })}
         />
         <button
-          className='h-8 w-8 text-white rounded-lg hover:bg-red-500'
+          className='h-6 w-6 flex items-center justify-center text-white rounded-lg  hover:scale-125'
           onClick={() => onDelete(todo._id)}
         >
-          ➖
+          <MdDelete size={20} />
         </button>
       </div>
     </ul>

@@ -23,14 +23,10 @@ app.post('/todo', async (req, res) => {
   try {
     await todo.create({
       title: obj.title,
-      description: obj.description,
-      completed: false,
     });
 
     res.status(200).json({
-      msg: 'To do created',
       title: obj.title,
-      desc: obj.description,
     });
   } catch (error) {
     console.log(error);
@@ -49,10 +45,17 @@ app.put('/completed', async (req, res) => {
     });
   }
   try {
-    const result = await todo.updateOne({ _id: idObj.id }, { completed: true });
+    const todoItem = await todo.findById(idObj.id);
+    const isComplete = todoItem.completed;
+    console.log('todoItem: --', todoItem);
+
+    const result = await todo.findByIdAndUpdate(
+      { _id: idObj.id },
+      { completed: !isComplete },
+      { new: true }
+    );
 
     res.status(200).json({
-      msg: 'marked completed',
       todo: result,
     });
   } catch (error) {

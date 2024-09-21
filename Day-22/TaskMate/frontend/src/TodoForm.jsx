@@ -5,7 +5,7 @@ function TodoForm({ onAddTodo }) {
   function handleSubmit(e) {
     e.preventDefault();
     if (!title) return;
-    const todoObj = { title, id: Date.now(), completed: false };
+    const todoObj = { title };
     onAddTodo(todoObj);
     setTitle('');
   }

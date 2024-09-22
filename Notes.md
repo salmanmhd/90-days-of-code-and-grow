@@ -1004,3 +1004,33 @@ return res.json({
 const decoded = jwt.verify(token, jwtPassword);
 const username = decoded.username;
 ```
+
+# React
+
+## useEffect cleanUp
+
+- cleanup function runs on two occasion:
+  - 1. before the effect is executed again
+  - 2. after a component has unmounted
+
+### Using abortcotroller
+
+- It stops the current fetch request when another search starts (handling race conditions)
+
+```Javascript
+const controller = new AbortController();
+
+// connecting with fetch
+const res = await fetch("http.....", {signal: controller.signal})
+
+// usinjg in clean up function
+return function(){
+  controller.abort();
+}
+
+// whenever a request gets cancelled, it will treat as error, to handle that:
+if (error.name !== "AbortError"){
+  setError(err.message)
+}
+
+```

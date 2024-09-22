@@ -6,15 +6,22 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch('http://localhost:3001/todo');
-      const data = await res.json();
-      setTodos(data.data);
-      console.log(data.data);
-    }
+    // async function fetchData() {
+    //   const res = await fetch('http://localhost:3001/todo');
+    //   const data = await res.json();
+    //   setTodos(data.data);
+    //   console.log(data.data);
+    // }
 
     fetchData();
   }, []);
+
+  async function fetchData() {
+    const res = await fetch('http://localhost:3001/todo');
+    const data = await res.json();
+    setTodos(data.data);
+    console.log(data.data);
+  }
 
   async function onAddTodo(obj) {
     const response = await fetch('http://localhost:3001/todo', {
@@ -24,9 +31,7 @@ function App() {
     });
 
     if (response.ok) {
-      const newTodo = await response.json();
-      console.log('new: ', newTodo);
-      setTodos([...todos, newTodo]);
+      fetchData();
     } else {
       console.error('Failed to add todo:', response.statusText);
     }

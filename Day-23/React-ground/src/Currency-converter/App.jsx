@@ -1,6 +1,6 @@
 // `https://api.frankfurter.app/latest?amount=100&from=EUR&to=USD`
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function App() {
   const [fromCurr, setFromCurr] = useState('INR');
@@ -27,6 +27,7 @@ export default function App() {
     padding: '30px',
     borderRadius: '12px',
     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+    height: '60%',
   };
 
   const rowStyle = {
@@ -73,7 +74,6 @@ export default function App() {
     // boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
     boxShadow: '0px 2px 6px rgba(19, 42, 19, 0.5)',
 
-    marginTop: '20px',
     width: '40%',
   };
 
@@ -81,7 +81,7 @@ export default function App() {
     fontSize: '24px',
     fontWeight: 'bold',
     color: '#333',
-    marginTop: '20px',
+    marginTop: '30px',
     padding: '10px 20px',
     border: '2px solid #4CAF50',
     borderRadius: '8px',
@@ -89,18 +89,24 @@ export default function App() {
     boxShadow: '0px 2px 6px rgba(19, 42, 19, 0.5)',
     textAlign: 'center',
   };
-
   const headingStyle = {
-    fontSize: '40px',
+    fontSize: '48px',
     fontWeight: 'bold',
-    color: '#ECF39E',
+    background: 'linear-gradient(to right, #ECF39E, #8EE4AF)', // Gradient effect
+    WebkitBackgroundClip: 'text',
+    color: 'transparent', // Makes the gradient fill the text
     marginBottom: '40px',
     textAlign: 'center',
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
-    letterSpacing: '1px',
+    textShadow: '4px 4px 8px rgba(0, 0, 0, 0.3)', // Gives a glowing effect
+    letterSpacing: '2px',
+    fontFamily: "'Poppins', sans-serif", // A modern font
   };
 
   async function handleClick() {
+    if (amount === 0) {
+      setResult('');
+      return;
+    }
     if (fromCurr === toCurr) {
       setResult(amount);
       return;
@@ -118,9 +124,33 @@ export default function App() {
     // setAmount(0);
   }
 
+  useEffect(() => {
+    async function fetchData() {
+      if (amount === 0) {
+        setResult('');
+        return;
+      }
+      if (fromCurr === toCurr) {
+        setResult(amount);
+        return;
+      }
+      const res = await fetch(
+        `https://api.frankfurter.app/latest?amount=${amount}&from=${fromCurr}&to=${toCurr}`
+      );
+      const data = await res.json();
+      console.log(data);
+      // const result = Math.round(data.rates[toCurr]);
+      const result = data.rates[toCurr].toFixed(2);
+
+      setResult(result);
+    }
+
+    fetchData();
+  }, [amount, fromCurr, toCurr]);
+
   return (
     <div style={containerStyle}>
-      <h1 style={headingStyle}>Modern Currency Convertor</h1>
+      <h1 style={headingStyle}>Currency Converter Pro</h1>
       <div style={converterStyle}>
         <div style={rowStyle}>
           <input
@@ -130,7 +160,6 @@ export default function App() {
             onChange={(e) => {
               e.preventDefault();
               setAmount(Number(e.target.value));
-              setResult(0);
             }}
           />
         </div>
@@ -140,34 +169,30 @@ export default function App() {
             value={fromCurr}
             onChange={(e) => {
               setFromCurr(e.target.value);
-              setResult(0);
             }}
           >
             <option value='INR'>INR</option>
             <option value='USD'>USD</option>
             <option value='EUR'>EUR</option>
             <option value='CAD'>CAD</option>
-            <option value='INR'>INR</option>
           </select>
           <select
             style={selectStyle}
             value={toCurr}
             onChange={(e) => {
               setToCurr(e.target.value);
-              setResult(0);
             }}
           >
             <option value='INR'>INR</option>
             <option value='USD'>USD</option>
             <option value='EUR'>EUR</option>
             <option value='CAD'>CAD</option>
-            <option value='INR'>INR</option>
           </select>
         </div>
         <button style={buttonStyle} onClick={handleClick}>
           Convert
         </button>
-        {result !== 0 && (
+        {result && (
           <p
             style={outputStyle}
           >{`${amount} ${fromCurr} =  ${result} ${toCurr}`}</p>

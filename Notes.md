@@ -1034,3 +1034,54 @@ if (error.name !== "AbortError"){
 }
 
 ```
+
+## Writing to local storage
+
+```javascript
+// writing
+localStorage.setItem('watched', JSON.stringify([...watched, movie]));
+
+// reading
+const storedValue = localStorage.getItem('watched');
+return JSON.parse(storeValue);
+```
+
+## Hooks
+
+- built in functions that allow us to "hook" into react internals:
+
+### Rules of hooks
+
+1. Do not call hooks inside the conditionals, loops, nested functions or after an early return. (necessary to ensure that hooks are always called in the same order)
+2. Only class hooks inside a function component or a custom hook
+
+### Lazy Evaluation
+
+```javascript
+const [count setCount] = useState(()=>{
+  localStorage.getItem('count')
+});
+```
+
+## useRef
+
+- box object with a mutable .current property that persisted across renders.
+- two big use cases:
+  - creating variable that stays the same across renders
+  - selecting and storing DOM elements
+- refs are for data that is not rendered.
+- don't read or write .current in render logic
+
+```javascript
+const myRef = useRef(23);
+```
+
+## Custom hooks
+
+- allow us to reuse non-visual logic in multiple components.
+- when we need to use logic that contains hooks
+- one custom hooks should have one purpose, to make it reusable and portable(even across multiple projects)
+- Rules:
+  - needs to use one or more hooks
+  - function name need to start with use
+  - unlike components, can receive and return any relevant data

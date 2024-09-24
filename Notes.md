@@ -1085,3 +1085,14 @@ const myRef = useRef(23);
   - needs to use one or more hooks
   - function name need to start with use
   - unlike components, can receive and return any relevant data
+
+## useReducer
+
+- stores related pieces of state in a state object
+- decouples state logic from components
+- reducer: pure function( no side effect) that takes current and action and returns next state
+- dispatch to trigger state updates by sending an action from event handlers to the reducer
+- dispatcher - who request the update
+- reducer - who updates the state
+- state - what needs to be updated
+-

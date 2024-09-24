@@ -8,6 +8,9 @@ import StarScreen from './StarScreen';
 import Question from './Question';
 import NextButton from './NextButton';
 import Progress from './Progress';
+import FinishScreen from './FinishScreen';
+import Footer from './Footer';
+import Timer from './Timer';
 
 const url = 'http://localhost:3500/questions';
 const initialState = {
@@ -16,8 +19,10 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
+  highscore: 0,
+  secondsRemaining: 10,
 };
-
+const SEC_PER_QUESTION = 30;
 function reducer(state, action) {
   switch (action.type) {
     case 'dataReceived':
@@ -25,7 +30,11 @@ function reducer(state, action) {
     case 'dataFailed':
       return { ...state, status: 'error' };
     case 'start':
-      return { ...state, status: 'active' };
+      return {
+        ...state,
+        status: 'active',
+        secondsRemaining: state.questions.length * SEC_PER_QUESTION,
+      };
     case 'newAnswer': {
       // const question = state.questions[state.index];
       const question = state.questions.at(state.index);
@@ -45,16 +54,38 @@ function reducer(state, action) {
         answer: null,
       };
 
+    case 'finished':
+      return {
+        ...state,
+        status: 'finished',
+        highscore:
+          state.points > state.highscore ? state.points : state.highscore,
+      };
+    case 'restart':
+      return {
+        ...initialState,
+        status: 'active',
+        questions: state.questions,
+        highscore: state.highscore,
+      };
+
+    case 'tick':
+      return {
+        ...state,
+        secondsRemaining: state.secondsRemaining - 1,
+        status: state.secondsRemaining === 0 ? 'finished' : state.status,
+      };
+
     default:
       return 'Invalid action';
   }
 }
 
 function App() {
-  const [{ questions, status, index, answer, points }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [
+    { questions, status, index, answer, points, highscore, secondsRemaining },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   const questLentgh = questions.length;
   const maxPoints = questions.reduce((acc, q) => acc + q.points, 0);
@@ -89,18 +120,32 @@ function App() {
               numQuestion={questLentgh}
               points={points}
               answer={answer}
+              maxPoints={maxPoints}
             />
             <Question
               question={questions[index]}
               answer={answer}
               dispatch={dispatch}
             />
-            <NextButton
-              dispatch={dispatch}
-              answer={answer}
-              maxPoints={maxPoints}
-            />
+            <Footer>
+              <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
+              <NextButton
+                dispatch={dispatch}
+                answer={answer}
+                maxPoints={maxPoints}
+                index={index}
+                numQuestions={questions.length}
+              />
+            </Footer>
           </>
+        )}
+        {status === 'finished' && (
+          <FinishScreen
+            points={points}
+            maxPossiblePoints={maxPoints}
+            highscore={highscore}
+            dispatch={dispatch}
+          />
         )}
       </Container>
     </div>

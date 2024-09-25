@@ -1096,3 +1096,116 @@ const myRef = useRef(23);
 - reducer - who updates the state
 - state - what needs to be updated
 -
+
+# React Router
+
+```bash
+  npm i react-router-dom
+```
+
+```javascript
+// creating route
+return (
+  <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/about' element={<About />} />
+      <Route path='*' element={<PageNotFound />} />
+    </Routes>
+  </BrowserRouter>
+);
+
+
+// Linking route (Using routes)
+  <Link to='/'>Home</Link>
+  <Link to='/about'>About</Link>
+
+
+  //NAVLINK - this contains active class for styling purpose we can use them
+   <NavLink to='/'>Home</NavLink>
+  <NavLink to='/about'>About</NavLink>
+
+  // NESTED ROUTES
+  <Route path='/app' element={<App />} >
+    <Route index element={<Home />}  />
+    <Route path='/cities' element={<Cities />} />
+  </Route>
+
+
+  // SHOWING THE NESTED ROUTE COMPONENT
+  <Outlet />
+
+  // DYNAMIC ROUTES (Using params)
+  <Route path='/app/:id' element={<App />} />
+
+  // PARAMS
+  <Link to={`${id}?lat=${lat}&lon=${lon}`} />
+  // using params
+  const { id } = useParams();
+// using query
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // getting query
+  const lat = searchParams.get('lat');
+  const lon = searchParams.get('lon');
+
+  // setting query
+  setSearchParams({ lat: 213, lon: 342 });
+  <Link>
+```
+
+## Programmatic Navigation
+
+### useNavigate
+
+- can be used to navigate programmatically like going back or going to specific route
+
+```javascript
+const navigate = useNavigate(); // use to call useHistory
+
+navigate(-1); // this will navigate to the previous route
+navigate(1); // this will navigate to the next route
+
+navigate('/about'); // this will navigate to /about
+```
+
+### Navigate
+
+- Use to redirect to specific route
+
+```javascript
+<Route index element={<Navigate to='cities' replace />} />
+```
+
+# Context API
+
+## Steps
+
+1. Create a context
+
+```javascript
+import { createContext } from 'react';
+
+const PostContext = createContext();
+```
+
+2. Create a provider
+
+```javascript
+return (
+  <PostContext.Provider value={value}>
+    // provide all the values that needs to be pass down to children Postcontext
+    will be the parent element
+    <Component /> // under postcontext all the components will be rendered, now no
+    need to pass anything
+  </PostContext.Provider>
+);
+```
+
+3. Consuming the values
+
+```javascript
+import { useContext } from 'react';
+const { onClearPost } = useContext(PostContext);
+// all the values that passed in the provider are available here
+```

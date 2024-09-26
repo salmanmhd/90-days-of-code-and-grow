@@ -52,12 +52,14 @@ function AddExpense() {
             name={expense}
             onChange={(e) => setExpense(e.target.value)}
             type='text'
-            placeholder={'Enter expense'}
+            title={'Name '}
+            placeholder={'Enter item name'}
           />
 
           <InputElement
             placeholder={'Enter Amount'}
             name={amount}
+            title={'Amount'}
             onChange={(e) => setAmount(Number(e.target.value))}
             type='number'
           />
@@ -97,18 +99,18 @@ function AddExpense() {
         </form>
 
         <div className='w-2/5 pl-8 mt-8'>
-          <Table expenses={expenses.slice(0, 2)} />
+          <Table expenses={expenses.slice(-4).reverse()} />
         </div>
       </div>
     </section>
   );
 }
 
-function InputElement({ type, placeholder, name, value, onChange }) {
+function InputElement({ type, placeholder, name, value, onChange, title }) {
   return (
     <div className='space-y-2'>
       <label htmlFor='expense-name' className='block text-lg text-gray-300'>
-        Expense
+        {title}
       </label>
       <input
         type={type}

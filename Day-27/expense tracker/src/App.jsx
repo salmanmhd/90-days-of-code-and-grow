@@ -1,10 +1,10 @@
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import AddExpense from './components/AddExpense';
-import ExpenseList from './components/ExpenseList';
+import Transaction from './components/Transaction';
 import Reports from './components/Reports';
 import Categories from './components/Categories';
-import Settings from './components/Settings';
+// import Settings from './components/Settings';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { BankProvider } from './context/BankContext';
 import AddIncome from './components/AddIncome';
@@ -21,10 +21,10 @@ const App = () => {
                 <Route path='/' element={<Dashboard />} />
                 <Route path='/add-expense' element={<AddExpense />} />
                 <Route path='/add-income' element={<AddIncome />} />
-                <Route path='/expense-list' element={<ExpenseList />} />
+                <Route path='/transactions' element={<Transaction />} />
                 <Route path='/reports' element={<Reports />} />
                 <Route path='/categories' element={<Categories />} />
-                <Route path='/settings' element={<Settings />} />
+                {/* <Route path='/settings' element={<Settings />} /> */}
               </Routes>
             </div>
           </div>

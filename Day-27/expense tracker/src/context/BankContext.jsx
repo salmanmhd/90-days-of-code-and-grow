@@ -3,6 +3,20 @@ const initialState = {
   balance: 3000,
   totalIncome: 5000,
   totalExpense: 2000,
+  incomes: [
+    {
+      amount: 5000,
+      date: '2022-01-01',
+      source: 'pocket money',
+      id: 1,
+    },
+    {
+      amount: 20000,
+      date: '2024-01-01',
+      source: 'free lancing',
+      id: 2,
+    },
+  ],
   expenses: [
     {
       amount: 500,
@@ -34,8 +48,9 @@ function reducer(state, action) {
     case 'addIncome':
       return {
         ...state,
-        totalIncome: state.totalIncome + action.payload,
-        balance: state.balance + action.payload,
+        totalIncome: state.totalIncome + action.payload.amount,
+        balance: state.balance + action.payload.amount,
+        incomes: [...state.incomes, action.payload],
       };
     case 'AddExpense':
       return {
@@ -44,17 +59,25 @@ function reducer(state, action) {
         balance: state.balance - action.payload.amount,
         totalExpense: state.totalExpense + action.payload.amount,
       };
+
     default:
       throw new Error('Invalid action');
   }
 }
 
 function BankProvider({ children }) {
-  const [{ balance, totalIncome, totalExpense, expenses }, dispatch] =
+  const [{ balance, totalIncome, totalExpense, expenses, incomes }, dispatch] =
     useReducer(reducer, initialState);
   return (
     <BankContext.Provider
-      value={{ balance, totalIncome, totalExpense, expenses, dispatch }}
+      value={{
+        balance,
+        totalIncome,
+        totalExpense,
+        expenses,
+        dispatch,
+        incomes,
+      }}
     >
       {children}
     </BankContext.Provider>

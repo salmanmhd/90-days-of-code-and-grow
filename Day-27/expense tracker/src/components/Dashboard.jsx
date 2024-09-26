@@ -1,9 +1,10 @@
 import { useBank } from '../context/BankContext';
+import IncomeTable from './IncomeTable';
 import Table from './Table';
 import Title from './Title';
 
 function Dashboard() {
-  const { balance, totalIncome, totalExpense, expenses } = useBank();
+  const { balance, totalIncome, totalExpense, expenses, incomes } = useBank();
   return (
     <section id='dashboard' className='space-y-8'>
       <Title>Dashboard</Title>
@@ -12,8 +13,10 @@ function Dashboard() {
         <DashboardItems text='Total Expense' value={totalExpense} />
         <DashboardItems text='Balance' value={balance} />
       </div>
-      <h1 className='text-3xl font-semibold text-gray-200'>Expense</h1>
-      <Table expenses={expenses.slice(0, 2)} />
+      <Title>Recent Expenses</Title>
+      <Table expenses={expenses.slice(-2).reverse()} />
+      <Title>Recent Incomes</Title>
+      <IncomeTable incomes={incomes.slice(-2).reverse()} />
     </section>
   );
 }

@@ -1,65 +1,125 @@
+import { useBank } from '../context/BankContext';
+import Modal from './Modal';
+import Table from './Table';
 import Title from './Title';
+import { useState } from 'react';
 
-const AddExpense = () => {
+function AddExpense() {
+  const [amount, setAmount] = useState('');
+  const [expense, setExpense] = useState('');
+  const [category, setCategory] = useState('food');
+  const [date, setDate] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
+  const { dispatch, expenses } = useBank();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const obj = {
+      expense,
+      amount,
+      category,
+      date,
+      id: Date.now(),
+    };
+
+    dispatch({ type: 'AddExpense', payload: obj });
+
+    setAmount('');
+    setExpense('');
+    setCategory('food');
+    setDate('');
+    setShowModal(true);
+  }
+
+  if (showModal)
+    return (
+      <Modal
+        show={true}
+        message={'Expense Added Successfully'}
+        onClose={() => setShowModal(false)}
+      />
+    );
+
   return (
-    <section id='add-expense' className='space-y-8 w-2/5 h-full '>
+    <section id='add-expense' className='w-full h-full space-y-8'>
       <Title>Add Expense</Title>
-      <form className='space-y-4 pl-8'>
-        <div className='space-y-2'>
-          <label htmlFor='expense-name' className='block text-lg text-gray-300'>
-            Expense
-          </label>
-          <input
+
+      <div className='flex space-x-8'>
+        <form className='space-y-4 w-1/2' onSubmit={handleSubmit}>
+          <InputElement
+            name={expense}
+            onChange={(e) => setExpense(e.target.value)}
             type='text'
-            id='expense-name'
-            placeholder='E.g. Grocery, Rent'
-            className='w-full p-3 bg-white/10 border border-gray-600 rounded-lg backdrop-blur-lg'
+            placeholder={'Enter expense'}
           />
-        </div>
-        <div className='space-y-2'>
-          <label htmlFor='amount' className='block text-lg text-gray-300'>
-            Amount
-          </label>
-          <input
+
+          <InputElement
+            placeholder={'Enter Amount'}
+            name={amount}
+            onChange={(e) => setAmount(Number(e.target.value))}
             type='number'
-            id='amount'
-            placeholder='Enter amount'
-            className='custom-number-input w-full p-3 bg-white/10 border border-gray-600 rounded-lg backdrop-blur-lg'
           />
-        </div>
 
-        <div className='space-y-2'>
-          <label htmlFor='category' className='block text-lg text-gray-300'>
-            Category
-          </label>
-          <select
-            id='category'
-            className='w-full p-3 bg-gray-800 text-white border border-gray-600 rounded-lg backdrop-blur-lg'
+          <div className='space-y-2'>
+            <label htmlFor='category' className='block text-lg text-gray-300'>
+              Category
+            </label>
+            <select
+              name='category'
+              onChange={(e) => setCategory(e.target.value)}
+              className='w-full p-3 bg-gray-800 text-white border border-gray-600 rounded-lg backdrop-blur-lg'
+            >
+              <option value='food'>Food</option>
+              <option value='education'>Education</option>
+              <option value='health'>Health</option>
+            </select>
+          </div>
+
+          <div className='space-y-2'>
+            <label htmlFor='date' className='block text-lg text-gray-300'>
+              Date
+            </label>
+            <input
+              type='date'
+              name='date'
+              onChange={(e) => setDate(e.target.value)}
+              className='w-full p-3 bg-white/10 border border-gray-600 rounded-lg backdrop-blur-lg'
+            />
+          </div>
+          <button
+            type='submit'
+            className='w-full py-3 mt-8 bg-green-500 hover:bg-green-600 rounded-lg shadow-lg transition'
           >
-            <option value='food'>Food</option>
-            <option value='education'>Education</option>
-            <option value='health'>Health</option>
-          </select>
-        </div>
+            Add Expense
+          </button>
+        </form>
 
-        <div className='space-y-2'>
-          <label htmlFor='date' className='block text-lg text-gray-300'>
-            Date
-          </label>
-          <input
-            type='date'
-            className='w-full p-3 bg-white/10 border border-gray-600 rounded-lg backdrop-blur-lg'
-          />
+        <div className='w-2/5 pl-8 mt-8'>
+          <Table expenses={expenses.slice(0, 2)} />
         </div>
-        <button
-          type='submit'
-          className='w-2/4 py-3 mt-8 bg-green-500 hover:bg-green-600 rounded-lg shadow-lg transition'
-        >
-          Add Expense
-        </button>
-      </form>
+      </div>
     </section>
   );
-};
+}
+
+function InputElement({ type, placeholder, name, value, onChange }) {
+  return (
+    <div className='space-y-2'>
+      <label htmlFor='expense-name' className='block text-lg text-gray-300'>
+        Expense
+      </label>
+      <input
+        type={type}
+        name={name}
+        required
+        placeholder={placeholder}
+        onChange={onChange}
+        className='w-full p-3 bg-white/10 border border-gray-600 rounded-lg backdrop-blur-lg'
+      />
+    </div>
+  );
+}
 
 export default AddExpense;

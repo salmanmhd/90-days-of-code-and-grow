@@ -16,5 +16,13 @@
     "jsonwebtoken": "^9.0.2",
     "jspdf": "^2.5.2",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "chai": "^5.1.1",
+    "ethereum-waffle": "^4.0.10",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.22.12"
   }
 }

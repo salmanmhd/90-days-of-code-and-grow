@@ -1209,3 +1209,7 @@ import { useContext } from 'react';
 const { onClearPost } = useContext(PostContext);
 // all the values that passed in the provider are available here
 ```
+
+# Redux
+
+- third party library to manage state

@@ -1213,3 +1213,79 @@ const { onClearPost } = useContext(PostContext);
 # Redux
 
 - third party library to manage state
+
+## 1. Creating store
+
+```javascript
+const rootReducer = combineReducers({
+  account: accountReducer,
+  customer: customerReducer,
+});
+
+const store = createStore(rootReducer);
+export default store;
+```
+
+## 2. Creating reducers
+
+```javascript
+export default function customerReducer(state = intialStateCustomer, action) {
+  switch (action.type) {
+    case 'customer/updateName':
+      return { ...state, fullName: action.payload };
+    default:
+      return state;
+  }
+}
+```
+
+## 3. Creating actions
+
+```javascript
+export function updateName(fullName) {
+  return {
+    type: 'customer/updateName',
+    payload: fullName,
+  };
+}
+```
+
+## 4. Dispatching actions
+
+```javascript
+const dispatch = useDispatch();
+dispatch(updateName('John Doe'));
+```
+
+## 5. Using values from store
+
+```javascript
+const customerName = useSelector((state) => state.customer.fullName);
+```
+
+# Thunks (middlewares - async actions)
+
+```javascript
+import { thunk } from 'redux-thunk';
+const store = createStore(reducer, applyMiddleware(thunk));
+
+// in the action function we return function instead of dispatch
+// the return function receives dispatch and getState
+
+export function deposit(amount, currency) {
+  if (currency === 'INR') {
+    return { type: 'account/deposit', payload: amount };
+  }
+
+  return async function (dispatch, getState) {
+    const res = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=INR`
+    );
+    const data = await res.json();
+    console.log(data);
+    const converted = data.rates.INR;
+
+    dispatch({ type: 'account/deposit', payload: converted });
+  };
+}
+```

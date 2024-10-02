@@ -1289,3 +1289,121 @@ export function deposit(amount, currency) {
   };
 }
 ```
+
+# Redux rtk
+
+## 1. Creating stores
+
+```javascript
+import { configureStore } from '@reduxjs/toolkit';
+
+  const store = configureStore({
+    reducer{
+      account : accoundReducer,
+      customer : customerReducer
+    }
+  })
+
+  export default store;
+```
+
+## 2. Creating slices
+
+```javascript
+const initialState = {
+  balance: 0,
+  loan: 0,
+};
+
+const accontSlice = createSlice({
+  name: 'account',
+  initialState,
+  reducers: {
+    deposit(state, action) {
+      state.balabce = action.payload;
+    },
+    requestLoan: {
+      prepare(amount, purpose) {
+        return {
+          payload: {
+            amount,
+            purpose,
+          },
+        };
+      },
+      reducer(state, action) {
+        if (state.loan > 0) return;
+
+        state.loan = action.payload.amount;
+      },
+    },
+  },
+});
+
+export const { deposit, requestLoan } = accountSlice.actions;
+export default accountSlice.reducer;
+```
+
+## 3. Dispatching and using values
+
+```javascript
+const dispatch = useDispatch();
+const { balance } = useSelector((state) => state.balance);
+```
+
+# Builing a project
+
+## Smaller projects
+
+1. break the desired UI into components
+2. build a static verison(state less)
+3. Thoink about state management + data flow
+
+## Bulding a real world project
+
+1. gather application requirements and features
+2. Divide the application into pages
+   1. think about the overall and page level UI
+   2. break the sdesired UI into compoennts
+   3. design and build a static version(no state yet)
+3. divide the app into feature categories
+   1. think about the state management + data flow
+4. Decide what libraries to use(tech decisions)
+
+# Modern Router
+
+```javascript
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />, //applayout is consistent for all routes
+    children: [
+      // children conatains all the routes
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/menu',
+        element: <Menu />,
+      },
+    ],
+  },
+]);
+// App
+function App() {
+  return <RouterProvider router={router} />;
+}
+
+// AppLayout
+function AppLayout() {
+  return (
+    <div>
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+      <CartOverview />
+    </div>
+  );
+}
+```

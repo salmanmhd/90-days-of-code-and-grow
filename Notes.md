@@ -1407,3 +1407,31 @@ function AppLayout() {
   );
 }
 ```
+
+## Submitting forms in rtk
+
+- create a form
+
+```javascript
+// just all the forms inside the <Form method="POST">
+
+<Form method="POST">
+<input type="text" name="fieldname">
+</Form>
+
+// then create action
+export async function action({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  console.log(data);
+  return null;
+}
+
+// finally import this into router
+      {
+        path: '/order/new',
+        element: <CreateOrder />,
+        action: createOrderAction,
+      },
+
+```

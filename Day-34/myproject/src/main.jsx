@@ -5,12 +5,14 @@ import "./index.css";
 import Playgournd from "./Playgournd.jsx";
 import Card from "./components/Card.jsx";
 import MainPage from "./components/MainPage.jsx";
+import Ground from "./YouTube/Ground.jsx";
 // import Prod from "./Prod.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* <App /> */}
     {/* <Prod /> */}
     {/* <Playgournd /> */}
-    <MainPage />
+    {/* <MainPage /> */}
+    <Ground />
   </StrictMode>,
 );

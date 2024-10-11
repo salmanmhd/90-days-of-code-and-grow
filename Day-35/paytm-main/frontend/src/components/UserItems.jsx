@@ -9,7 +9,9 @@ function UserItems({ user = "Username" }) {
         </div>
         <p>{user}</p>
       </div>
-      <Button text={"Send Money"} />
+      <div className="w-36">
+        <Button text={"Send Money"} />
+      </div>
     </div>
   );
 }

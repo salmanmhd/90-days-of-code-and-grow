@@ -1,13 +1,27 @@
 import { useState } from "react";
+import axios from "axios";
 import Heading from "../components/Heading";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import AuthRedirect from "../components/AuthRedirect";
+import { useNavigate } from "react-router-dom";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  function handleSubmit(e) {
+  const navigate = useNavigate();
+  async function handleSubmit(e) {
     e.preventDefault();
+    if (!username || !password || password.length < 6) return;
+    const response = await axios.post(
+      "http://localhost:3000/api/v1/user/signin",
+      {
+        username,
+        password,
+      },
+    );
+
+    localStorage.setItem("token", response.data.token);
+    navigate("/dashboard");
     console.log("submitted");
   }
   return (

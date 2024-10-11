@@ -19,19 +19,15 @@ const signinSchema = zod.object({
 router.post('/signup', async (req, res) => {
   const body = req.body;
   const zodSchema = signupSchema.safeParse(body);
-  // console.log(zodSchema);
   const { success } = zodSchema;
-  // console.log(success);
   if (!success) {
     return res.status(400).json({
       message: 'Incorrect inputs',
     });
   }
-  console.log(body.username, 'userNAME');
   const existingUser = await User.findOne({
     username: body.username,
   });
-  console.log(existingUser);
   if (existingUser) {
     return res.status(409).json({
       msg: 'Email already taken',
@@ -83,7 +79,7 @@ router.post('/signin', async (req, res) => {
       },
       JWT_SECRET
     );
-    res.json({
+    res.status(200).json({
       token,
     });
     return;

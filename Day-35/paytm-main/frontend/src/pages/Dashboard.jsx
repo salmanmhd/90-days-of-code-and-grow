@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Navigation from "../components/Navigation";
 import UserItems from "../components/UserItems";
 function Dashboard() {
@@ -8,6 +9,25 @@ function Dashboard() {
     e.preventDefault();
     console.log("submitted");
   }
+
+  useEffect(() => {
+    async function fetchDetails() {
+      const response = await axios.get(
+        "http://localhost:3000/api/v1/user/balance",
+      );
+
+      if (!response) {
+        console.log("error fetching data");
+        return;
+      }
+
+      setBalance(response.data.balance);
+      setName(response.data.firstName);
+    }
+
+    fetchDetails();
+  }, []);
+
   return (
     <div className="h-screen bg-gradient-to-br from-emerald-950 to-indigo-950">
       <Navigation />
@@ -21,6 +41,12 @@ function Dashboard() {
           className="mb-7 w-full rounded-lg p-2 placeholder:text-lg"
           placeholder="Search users..."
         />
+        <UserItems />
+        <UserItems />
+        <UserItems />
+        <UserItems />
+        <UserItems />
+        <UserItems />
         <UserItems />
       </div>
     </div>

@@ -113,34 +113,32 @@ router.put('/', authMiddleware, async () => {
   });
 });
 
-router.get('/bulk', async (req, res) => {
+router.get('/bulk', authMiddleware, async (req, res) => {
   const filter = req.query.filter || '';
 
-  const users = await User.find({
-    $or: [
-      {
-        firstName: {
-          $regex: filter,
-          $options: 'i', // Makes the search case-insensitive
-        },
-      },
-      {
-        lastName: {
-          $regex: filter,
-          $options: 'i',
-        },
-      },
-    ],
-  });
+  const query = filter
+    ? {
+        $or: [
+          { firstName: { $regex: filter, $options: 'i' } },
+          { lastName: { $regex: filter, $options: 'i' } },
+        ],
+      }
+    : {};
 
-  res.json({
-    users: users.map((user) => ({
+  try {
+    const users = await User.find(query);
+
+    const mappedUsers = users.map((user) => ({
       username: user.username,
       firstName: user.firstName,
       lastName: user.lastName,
       _id: user._id,
-    })),
-  });
+    }));
+
+    res.status(200).json({ users: mappedUsers });
+  } catch (error) {
+    res.status(500).json({ msg: 'Server error' });
+  }
 });
 
 module.exports = router;

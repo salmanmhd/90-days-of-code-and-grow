@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Heading from "../components/Heading";
 import Input from "../components/Input";
@@ -9,6 +9,14 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   async function handleSubmit(e) {
     e.preventDefault();
     if (!username || !password || password.length < 6) return;
@@ -43,7 +51,7 @@ function Login() {
               placeholderText={"**********"}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button text="Sign Up" />
+            <Button text="Login Up" />
           </form>
           <AuthRedirect
             text={"Don't have an account?"}

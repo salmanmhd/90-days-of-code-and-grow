@@ -41,3 +41,4 @@ axios.post(
 1 - tackle the signin/signup page when the user is already signed in
 2 - when landing on / user should redirected to either dashboard or login
 3 - adding transactions page
+4 - no one should be able to access the send page from anywhere else

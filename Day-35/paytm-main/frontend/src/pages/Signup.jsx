@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Heading from "../components/Heading";
 import Input from "../components/Input";
@@ -12,6 +12,14 @@ function Signup() {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -22,10 +30,10 @@ function Signup() {
     const response = await axios.post(
       "http://localhost:3000/api/v1/user/signup",
       {
-        username: "abcd@gmail.com",
-        password: "123123",
-        firstName: "random",
-        lastName: "random",
+        username,
+        password,
+        firstName,
+        lastName,
       },
     );
     localStorage.setItem("token", response.data.token);
@@ -63,7 +71,11 @@ function Signup() {
             />
             <Button text="Sign Up" />
           </form>
-          <AuthRedirect text={"Already have an account?"} redirect={"/login"} />
+          <AuthRedirect
+            text={"Already have an account?"}
+            redirect={"/login"}
+            redirectText={"Sign In"}
+          />
         </div>
       </div>
     </div>

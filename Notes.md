@@ -1138,7 +1138,7 @@ return (
   // DYNAMIC ROUTES (Using params)
   <Route path='/app/:id' element={<App />} />
 
-  // PARAMS
+  // PARAMS - using params will require path to be declared:
   <Link to={`${id}?lat=${lat}&lon=${lon}`} />
   // using params
   const { id } = useParams();

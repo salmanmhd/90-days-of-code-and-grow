@@ -1076,6 +1076,11 @@ const [count setCount] = useState(()=>{
 const myRef = useRef(23);
 ```
 
+## returning a function from useEffect
+
+- the return function will be called when the component unmounts
+- some examples of that return function are: aborting a fetch request, closing a websocket, clearing a timer, restarting a timer, etc.
+
 ## Custom hooks
 
 - allow us to reuse non-visual logic in multiple components.
@@ -1085,6 +1090,35 @@ const myRef = useRef(23);
   - needs to use one or more hooks
   - function name need to start with use
   - unlike components, can receive and return any relevant data
+- ```javascript
+  //the hook
+  function useFetch(url) {
+    const [data, setData] = useState();
+    const [error, setError] = useState();
+    const [loading, setLoading] = useState();
+
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const res = await axios.get(url);
+          const data = res.data;
+          setData(data);
+        } catch (err) {
+          setError(err);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      fetchData();
+    }, []);
+
+    return { data, error, loading };
+  }
+
+  // calling custom hook
+  const { data, error, loading } = useFetch('https://api.example.com/data');
+  ```
 
 ## useReducer
 

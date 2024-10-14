@@ -1469,3 +1469,9 @@ export async function action({ request }) {
       },
 
 ```
+
+## React Query
+
+```javascript
+npm i @tanstack/react-query
+```

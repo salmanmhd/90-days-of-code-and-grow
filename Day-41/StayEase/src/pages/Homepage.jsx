@@ -55,10 +55,10 @@ export default function Homepage() {
             </p>
           </nav>
           <Button
-            size='lg'
-            className='bg-indigo-700 hover:bg-indigo-600 text-white px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105'
+            size='md'
+            className='bg-indigo-700 hover:bg-indigo-600 text-white px-7 py-2 rounded-xl transition-all duration-300 transform hover:scale-105'
           >
-            Explore Rooms
+            Sign in
           </Button>
         </div>
       </header>

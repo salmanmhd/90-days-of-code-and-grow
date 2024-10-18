@@ -1475,3 +1475,170 @@ export async function action({ request }) {
 ```javascript
 npm i @tanstack/react-query
 ```
+
+# Named and default exports
+
+- one file can have only one default export while can have many named export
+- named export can be only use at the time of declaration, if we have to use that later then we can use like `export {variable}`
+- export default can be declared anywhere
+- we can rename the default export directly
+- renaming of named export can be done only by using as - `import {add as sum}`
+
+# Typescript
+
+- Data types: `string, number, boolean, any, null`
+- type inference - ts auto decide what will be the return type
+
+## Creating a typescript environment
+
+```bash
+tsc --init // creates a simple tsconfig.json
+
+// all the converted js file should be in dist folder -
+
+// we can write the ts file in src
+
+```
+
+`outDir: './dist'/`
+`rootDir: './src'/`
+
+```javascript
+function sumOf3(c: number, fn: (a: number, b: number) => number): number {
+  const d: number = fn(1, 2);
+  return c + d;
+}
+```
+
+## Types
+
+```typescript
+  type cardDate = {
+    cardDate = string
+  }
+
+  type cardNumber ={
+    cardNumber = number
+  }
+
+  // this will combine the value of both and add the rest
+  type cardDetails = cardDate & cardNumber & {
+    cvv: number
+  }
+```
+
+## Interface
+
+- Setting the type for objects for reusability
+
+```javascript
+interface User {
+  username: string;
+  fullName: string;
+  age: number;
+  email?: string; //this will be optional
+}
+```
+
+```javascript
+interface Person {
+  name: string;
+  age: number;
+  greet(phrase: string): void;
+}
+```
+
+- `extends` is used to extend the property of other interface
+
+//implements: this will make sure that class must have the same types of properties that a person has,
+class Employee implements Person {
+name: string;
+age: number;
+
+constructor(n: string, a: number) {
+this.name = n;
+this.age = a;
+}
+
+greet(phrase: string) {
+console.log(`${phrase} ${this.name}`);
+}
+}
+
+````
+
+## Array
+
+```typescript
+const a: number[] = [];
+const b: Array<number> = [];
+
+//to have multiple types of variables in array
+const arr: (string | number)[] = [1, 'one'];
+````
+
+## Unions
+
+```typescript
+let user: string | number;
+
+user = 'salman';
+user = 12;
+```
+
+## Tuples
+
+- to restrict the order of types and lenght as well
+
+```typescript
+let tUser: [string, number, boolean];
+```
+
+## Enums
+
+- enums set input restriction
+
+```typescript
+// way 1
+type KeyInput = 'up' | 'down' | ' left' | 'right';
+doSomething('up');
+
+// Enum - -by default it will be the index number,
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+
+// we can define from the numbers should start, and putting const in the begining will exort only that part to js
+const enum Direction {
+  Up = 2,
+  Down,
+  Left,
+  Right,
+}
+
+// we can give values to it manually
+enum Direction {
+  Up = 'up',
+  Down = 'down',
+  Left = 'left',
+  Right = 'right',
+}
+
+doSomething(Direction.Up);
+```
+
+## Generics
+
+```typescript
+function identity<T>(arg: T) {
+  return arg;
+}
+
+let output1 = identity < string > 'str';
+let output2 = identity < number > 12;
+```
+
+##

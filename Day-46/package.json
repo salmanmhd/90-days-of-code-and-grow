@@ -1,0 +1,17 @@
+{
+  "name": "day-46",
+  "version": "1.0.0",
+  "main": "rough.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc --b && node ./dist/a.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/pg": "^8.11.10",
+    "pg": "^8.13.0"
+  }
+}

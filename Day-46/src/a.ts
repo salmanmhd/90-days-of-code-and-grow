@@ -1,7 +1,10 @@
 import { Client } from 'pg';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: './.env' });
+const URI = process.env.URI;
 const client = new Client({
-  connectionString:
-    'postgresql://test_owner:KzuwFNE1yeJ4@ep-polished-night-a598wsc4.us-east-2.aws.neon.tech/test?sslmode=require',
+  connectionString: URI,
 });
 
 async function insertData() {

@@ -1641,4 +1641,20 @@ let output1 = identity < string > 'str';
 let output2 = identity < number > 12;
 ```
 
-##
+# Next Js
+
+## React Server Components
+
+- There can be two components of react:
+
+1.  Client Component - it will be rendered on the client, and will contain all the state and hooks.
+    1. By default every component is server component, to make a component client component we need to use `use client`
+    2. It can use state and hooks
+    3. The child of client component don't need use `use client` to make it client component, it will by default the client component.
+    4. Server client boundary is a boundary between server and client
+    5. When passing the props, in cross side the data needs to be json serializable. It can be any data while sharing on the same type of components like client to client or server to server.
+    6.
+2.  Server Component - It will be rendered on the server, and will not contain any state or hooks.
+3.  it cannot use state or hooks
+
+-
